@@ -1,7 +1,7 @@
-#I. OGÓLNY ZARYS DZIAŁANIA
+##I. OGÓLNY ZARYS DZIAŁANIA
 Chmura operać się będzie na mySQLu, którego budowa zostanie określona poniżej. Użytkownik będzie za pomocą witryny umieszczał plik/katalog na serwerze, a sam serwer umieścli go w katalogu z plikami(być może będzie tworzony katalog dla kazdego użytkownika; jeśli nie - wszystkie pliki luzem w jednym katalogu. Przy wysłaniu pliku zostanie utworzony wpis w bazie danych, który będzie zawierał nazwę pliku, unikalny identyfikator oraz właściciela, natomias plik po stronie serwera zmieni nazwę do postaci swojego identyfikatora (np. 0000001,17483943 lub 23545554.jpg - zobaczymy, czy zapiszemy z rozszerzeniem). Obsługiwane również będą “wirtualne katalogi” - w bazie danych będą miały charakter plików, jednak nada się im nieco inne parametry, np DIR. Każdy plik będzie posiadał pid - identyfikator obiektu nadrzędnego, czyli nic innego jak id folderu, w którym sie znajduje - to umożliwi wejście do katalogów oraz rozwiązanie problemu unikalności nazw folderów(domyślnie=0). Na pewno ustawi się limit pliku, np. 20MB. Ze strony klienta webowego będzie do zrobienia panel logowania, eksplorator plików, menu wysyłania/pobierania/usuwania plików, panel administratora do zarządzania wszystkimi plikami.
 
-#II. STRUKTURA MYSQL (PHPMYADMIN)
+##II. STRUKTURA MYSQL (PHPMYADMIN)
 Nazwa tabeli : Users
 Kolumny: id, login, password, permissions, registerdate, storage
 
@@ -14,7 +14,7 @@ Kolumny: id, type, text, date, owner
 Myślę, że to wystarczy. Są użytkownicy, jest system uprawnień, jest przydział pamięci. W plikach mamy obsługę katalogów, rozmiar pliku(preferowalnie w KB), ścieżka dostępu na serwerze, data wysłania.
 Tabela log jest opcjonalna, ale może pomóc adminowi z panelu admina śledzenie błędów np. podczas wysyłania plików.
 
-#III. STRUKTURA PLIKÓW NA SERWERZE
+##III. STRUKTURA PLIKÓW NA SERWERZE
 [root]
 index.php - Launcher sesji chmury. Jeśli niezalogowany -> engine/loginform.php. Jeśli 			zalogowany -> engine/filemanager.php.
 [root/files] //pliki uploadowane na serwer
