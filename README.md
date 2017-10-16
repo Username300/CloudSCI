@@ -6,7 +6,7 @@ Nazwa tabeli : Users
 Kolumny: id, login, password, permissions, registerdate, storage
 
 Nazwa tabeli : Files
-Kolumny: id, pid, name, ext, owner, type, update, size, path
+Kolumny: id, pid, name, ext, owner, type, updated, size, path
 
 Nazwa tabeli : Log
 Kolumny: id, type, text, date, owner
