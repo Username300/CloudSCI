@@ -3,7 +3,7 @@ Chmura będzie się opierać na mySQLu, którego budowa zostanie określona poni
 
 ## II. STRUKTURA MYSQL (PHPMYADMIN)
 Nazwa tabeli : Users
-Kolumny: id, login, password, permissions, registerdate, storage
+Kolumny: id, login, password, permissions, registerdate, storage, usedspace
 
 Nazwa tabeli : Files
 Kolumny: id, pid, name, ext, owner, type, updated, size, path
