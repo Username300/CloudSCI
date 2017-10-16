@@ -1,1 +1,9 @@
-//Launcher
+<?php
+session_start();
+if (isset($_SESSION["login"])){
+  header("Location: filemanager.php");
+}
+else{
+  header("Location: loginform.php");
+}
+?>
