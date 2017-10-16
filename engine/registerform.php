@@ -15,7 +15,7 @@
       <button type='submit'>Zarejestruj się</button>
       <br><br>
     </form>
-    <form action="index.php">
+    <form action="../index.php">
       <button type='submit'>Wróć do strony głównej</button>
     </form>
   </body>
