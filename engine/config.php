@@ -3,4 +3,5 @@ $dbhost="localhost";
 $dbusername="root";
 $dbpassword="";
 $dbname="cloud";
+$dbprefix="";
 ?>
