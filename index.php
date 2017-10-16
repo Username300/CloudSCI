@@ -1,9 +1,9 @@
 <?php
 session_start();
 if (isset($_SESSION["login"])){
-  header("Location: filemanager.php");
+  header("Location: engine/filemanager.php");
 }
 else{
-  header("Location: loginform.php");
+  header("Location: engine/loginform.php");
 }
 ?>
