@@ -20,3 +20,38 @@
     </form>
   </body>
 </html>
+
+<?php
+if(isset($_GET['err'])){
+  if($_GET["err"]==1){
+    echo "<script>
+      alert('Błąd: Hasła nie są zgodne.');
+    </script>
+    ";
+  }
+  else if($_GET["err"]==2){
+    echo "<script>
+      alert('Błąd: Długość hasła nie spełnia wymagań.');
+    </script>
+    ";
+  }
+  else if($_GET["err"]==3){
+    echo "<script>
+      alert('Błąd: Odpowiedź na pytanie antyspamowe jest nieprawidłowa.');
+    </script>
+    ";
+  }
+  else if($_GET["err"]==4){
+    echo "<script>
+      alert('Błąd: Ta nazwa użytkownika jest już zajęta.');
+    </script>
+    ";
+  }
+  else{
+    echo "<script>
+      alert('Wystąpił nieoczekiwany błąd.');
+    </script>
+    ";
+  }
+}
+?>
