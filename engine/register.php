@@ -24,8 +24,8 @@ else{
     $result=$connect->query("SELECT * From users$dbprefix WHERE login='$login'");
     if(mysqli_num_rows($result) > 0 || $login=="Gość")
     {
-				header("Location: registerform.php?err=4");  //blad: uzytkownik o tej nazwie juz istnieje
-				die();
+	header("Location: registerform.php?err=4");  //blad: uzytkownik o tej nazwie juz istnieje
+	die();
     }
     else{
         $passwd=sha1(sha1($password));
@@ -35,7 +35,7 @@ else{
     }
   }
   else{
-		echo "Brak połączenia z bazą";
+	echo "Brak połączenia z bazą";
 	}
 }
  ?>
