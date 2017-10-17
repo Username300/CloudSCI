@@ -30,15 +30,15 @@ else if($spambot!=10){
 else{
 	if(mysqli_connect_errno()==0)
 	{
-    $result=$connect->query("SELECT * From users'$dbprefix' WHERE username='$login'");
+    $result=$connect->query("SELECT * From users$dbprefix WHERE login='$login'");
     if($result->num_rows > 0 || $login=="Gość")
     {
-        echo xd;
+        echo "xd";
         die();
     }
     else{
         $passwd=sha1(sha1($password)); //podwojne hashowanie hasla
-        $connect->query("INSERT INTO users'$dbprefix' VALUES ('', '$login', '$passwd', '1', '$date', '$default_storage', '0')");
+        $connect->query("INSERT INTO users$dbprefix VALUES ('', '$login', '$passwd', '1', '$date', '$default_storage', '0')");
 				var_dump($login);
 				var_dump($password);
 				var_dump($passwd);
