@@ -31,7 +31,7 @@ else{
 	if(mysqli_connect_errno()==0)
 	{
     $result=$connect->query("SELECT * From users$dbprefix WHERE login='$login'");
-    if($result->num_rows > 0 || $login=="Gość")
+    if(mysqli_num_rows($result) > 0 || $login=="Gość")
     {
         echo "xd";
         die();
