@@ -1,3 +1,9 @@
+//Nie kopiowac do /engine
+//***TO NIE DZIALA***
+
+
+
+
 <?php
 require_once("config.php");
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
