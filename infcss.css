@@ -1,27 +1,31 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #f4f4f4;
+}
 .nav-side-menu {
   overflow: auto;
   font-family: verdana;
   font-size: 12px;
   font-weight: 200;
-  background-color: #253644;
+  background-color: #485C7B;
   position: fixed;
   top: 0px;
-  width: 300px;;
+  width: 300px;
   height: 100%;
   color: #e1ffff;
   -webkit-box-shadow: 7px 2px 12px 1px rgba(0,0,0,0.28);
 -moz-box-shadow: 7px 2px 12px 1px rgba(0,0,0,0.28);
 box-shadow: 7px 2px 12px 1px rgba(0,0,0,0.28);
 }
+.content-display{
+	margin: 0px 20px;
+}
 .nav-side-menu .brand {
-  background-color: #4f5b69;
   display: block;
   text-align: center;
   font-size: 14px;
   margin:0 auto;
-  -webkit-box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.41);
-  -moz-box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.41);
-  box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.41);
 }
 .nav-side-menu .toggle-btn {
   display: none;
@@ -81,8 +85,8 @@ box-shadow: 7px 2px 12px 1px rgba(0,0,0,0.28);
 }
 .nav-side-menu li {
   padding-left: 0px;
-  border-left: 3px solid #2e353d;
-  border-bottom: 1px solid #23282e;
+  border-left: 3px solid #3C434B;
+  border-bottom: 1px solid #3C434B;
 }
 .nav-side-menu li a {
   text-decoration: none;
@@ -102,6 +106,30 @@ box-shadow: 7px 2px 12px 1px rgba(0,0,0,0.28);
   -ms-transition: all 1s ease;
   transition: all 1s ease;
 }
+.date-bottom{
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+.progress {
+    position: relative;
+	height: 25px;
+}
+.progress > .progress-type {
+	position: absolute;
+	left: 0px;
+	font-weight: 800;
+	padding: 3px 30px 2px 10px;
+	color: rgb(255, 255, 255);
+	background-color: rgba(25, 25, 25, 0.2);
+}
+.progress > .progress-completed {
+	position: absolute;
+	right: 0px;
+	font-weight: 800;
+	padding: 3px 10px 2px;
+}
+
 @media (max-width: 991px) {
   .nav-side-menu {
     position: relative;
@@ -127,15 +155,10 @@ box-shadow: 7px 2px 12px 1px rgba(0,0,0,0.28);
     padding-left: 20px;
     line-height: 50px !important;
   }
-   .sci-logo{
-	height:50px;
+   .clouds-logo{
+	width:50px;
 	padding-bottom: 5px;
 	padding-top: 5px;
-	float: left;
-  }
-   .nav-side-menu .brand  h4{
-	float:left;
-	padding-left: 20px;
   }
   .main{
 	width: 100%;
@@ -145,22 +168,12 @@ box-shadow: 7px 2px 12px 1px rgba(0,0,0,0.28);
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
-  .nav-side-menu .brand  h4{
-	float: left;
-	line-height: 136px;
-	text-align: center;
-	height: 154px;
-  }
-  .sci-logo{
-	float: left;
-	padding-left: 25px;
-  }
   .main{
 	margin-left: 300px;
   }
-}
-body {
-  margin: 0px;
-  padding: 0px;
-  background-color: #f4f4f4;
+  .clouds-logo{
+	width:200px;
+	height: 100px;
+	margin: 20px;
+  }
 }
