@@ -9,11 +9,17 @@
     Wybierz plik: <input type="file" name="file" /><br>
     <input type="hidden" name="pid" value="
     <?php
-    if(isset($_GET['pid'])) echo $_GET['pid'];
-    else echo "0";
+    if(isset($_POST['pid'])) $pid=$_POST['pid'];
+    else $pid=0;
+    echo $pid;
     ?>
     "/>
     <button type="submit" name="sendfile">Wyślij plik</button>
+    </form>
+    <br>
+    <form method="get" action="filemanager.php">
+      <input type="hidden" name="pid" value="<?php echo $pid; ?>">
+    <button type='submit'>Wróć do plików</button>
     </form>
   </body>
 </html>

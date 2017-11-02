@@ -5,6 +5,7 @@ $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 if(mysqli_connect_errno()==0)
 {
   if(isset($_POST['id']) && isset($_SESSION['login'])) {
+    if(isset($_POST['pid'])) $pid=$_POST['pid'];
     $id = $_POST['id'];
     $result = $connect->query("SELECT name FROM files$dbprefix WHERE id='$id'");
     $row = $result->fetch_assoc();
@@ -36,10 +37,16 @@ if(mysqli_connect_errno()==0)
          echo $id;
          ?>
          "/>
+         <input type="hidden" name="pid" value="
+         <?php
+         echo $pid;
+         ?>
+         "/>
          <button type='submit'>Usuń na zawsze</button>
        </form>
-       <form action="../index.php">
-         <button type='submit'>Anuluj</button>
+       <form method="get" action="filemanager.php">
+         <input type="hidden" name="pid" value="<?php echo $pid; ?>">
+       <button type='submit'>Anuluj</button>
        </form>
   </body>
 </html>

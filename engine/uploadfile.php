@@ -11,7 +11,9 @@ if(mysqli_connect_errno()==0)
     $target_filename = intval($row['MAX(id)']) + 1; //ustawianie nazwy nowego pliku
     $target_file = $target_dir . $target_filename;
     $source_file_ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION); //ustalanie rozszerzenia pliku
-    $pid = $_POST['pid'];
+    if(isset($_POST['pid'])) $pid = $_POST['pid'];
+    else $pid = 0;
+    settype($pid, "integer");
     $source_filename = $_FILES['file']['name']; //nazwa wysylanego pliku
     $owner = $_SESSION['login'];
     $date = date('Y-m-d H:i:s', time()); //aktualna data
