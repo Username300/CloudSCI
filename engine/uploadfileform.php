@@ -10,6 +10,10 @@
     <input type="hidden" name="pid" value="
     <?php
     if(isset($_POST['pid'])) $pid=$_POST['pid'];
+    else if(isset($_SESSION['cpid'])) {
+      $pid=$_SESSION['cpid'];
+      unset($_SESSION['cpid']);
+    }
     else $pid=0;
     echo $pid;
     ?>

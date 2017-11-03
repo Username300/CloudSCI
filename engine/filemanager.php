@@ -69,7 +69,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
       <div style='width:820px;height:25px;border:1px solid black;'>
         <div style='width:400px;height:25px;border-right:1px solid black;float:left;'><a href='filemanager.php?pid=".$files[$i]['id']."'>".$files[$i]['name']."</a></div>
         <div style='float:left;width:60px;height:25px;padding-left:10px;border-right:1px solid black;'>katalog</div>
-        <div style='float:left;width:170px;height:25px;padding-left:10px;border-right:1px solid black;'>---</div>
+        <div style='float:left;width:170px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['updated']."</div>
         <div style='float:left;width:70px;height:25px;padding-left:10px;border-right:1px solid black;'>---</div>
         <div style='float:left;width:40px;height:25px;'>
           <form method='post' action='deletefileform.php'>

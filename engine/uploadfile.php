@@ -24,6 +24,7 @@ if(mysqli_connect_errno()==0)
     $total_space = $row['storage'];
     $used_space = $row['usedspace']; //sprawdzanie dostepnej przestrzeni dyskowej dla uzytkownika
     $file_loc = $_FILES['file']['tmp_name']; //tymczasowa lokalizacja pliku
+    $_SESSION['cpid'] = $pid; //dla redirecta: uploadfileform.php
     if($used_space + $file_size <= $total_space && $file_size <= $max_file_size){
       if(move_uploaded_file($file_loc, $target_file)){ //wysylanie pliku
         $result = $connect->query("INSERT INTO files$dbprefix VALUES ('', '$pid', '$source_filename', '$source_file_ext', '$owner', 'FILE', '$date', '$file_size', '$target_file')");

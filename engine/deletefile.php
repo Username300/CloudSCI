@@ -1,4 +1,28 @@
 <?php
+function remdir($id,$connect,$dbprefix) { //przyjmuje id oraz dane polaczenia do sql
+  if(mysqli_connect_errno()==0)
+  {
+      $result = $connect->query("SELECT id,type,path FROM files$dbprefix WHERE pid='$id'");
+      while($row = $result->fetch_assoc()){
+        $files[] = $row;
+      }
+      foreach ($files as $type){ //sprawdza czy jest w katalogu katalog
+        if($type['type']==="DIR"){
+          remdir($type['id'],$connect,$dbprefix); //jezeli jest katalog wejdzie do niego i ponownie sie wykona
+        }
+        else if($type['type']==="FILE"){ //jezeli obiekt jest plikiem to go usuwa
+          $tmp = $type['id'];
+          $path = $type['path'];
+          $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$tmp'");
+          unlink($path);
+        }
+      }
+      $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$id'"); //pusty katalog jest usuwany
+    unset($i);
+  }
+}
+
+
 require_once("config.php");
 session_start();
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
@@ -13,26 +37,20 @@ if(mysqli_connect_errno()==0)
     $owner = $_SESSION['login'];
     $id=$_POST['id'];
     settype($id, "integer");
-    $result = $connect->query("SELECT usedspace FROM users$dbprefix WHERE login='$owner'"); //okreslanie przestrzeni dyskowej
+    $result = $connect->query("SELECT path,type FROM files$dbprefix WHERE id='$id'"); //pobieranie metadanych obiketu
     $row = $result->fetch_assoc();
-    $used_space = $row['usedspace'];
-    $result = $connect->query("SELECT size,path,type FROM files$dbprefix WHERE id='$id'"); //okreslanie rozmiaru pliku lub katalogu
-    $row = $result->fetch_assoc();
-    $file_size = $row['size'];
-    var_dump($row);
-    $updated_space = $used_space - $file_size;
     $path = $row['path']; //sciezka do usuwanego pliku
     $type = $row['type']; //plik czy katalog
     if($type === "DIR"){
-      $result = $connect->query("DELETE FROM files$dbprefix WHERE pid='$id'");
-      $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$id'");
+      remdir($id,$connect,$dbprefix);
+      //todo: rekalkulowanie wolnego miejsca
       header("Location: filemanager.php");
       die();
     }
     else if($type === "FILE"){
       unlink($path);
       $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$id'"); //usuwanie wpisu pliku
-      $result = $connect->query("UPDATE users$dbprefix SET usedspace = '$updated_space' WHERE login = '$owner'");
+      //todo: rekalkulowanie wolnego miejsca
       header("Location: filemanager.php?pid=$pid");
       die();
     }
