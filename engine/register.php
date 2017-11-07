@@ -24,18 +24,19 @@ else{
     $result=$connect->query("SELECT * From users$dbprefix WHERE login='$login'");
     if(mysqli_num_rows($result) > 0 || $login=="Gość")
     {
-	header("Location: registerform.php?err=4");  //blad: uzytkownik o tej nazwie juz istnieje
-	die();
+				header("Location: registerform.php?err=4");  //blad: uzytkownik o tej nazwie juz istnieje
+				die();
     }
     else{
         $passwd=sha1(sha1($password));
         $connect->query("INSERT INTO users$dbprefix VALUES ('', '$login', '$passwd', '1', '$date', '$default_storage', '0')");
         //przekierowanie do: dziekujemy za rejestracje a potem index.php
+				header("Location: ../index.php"); //tymczasowo
         die();
     }
   }
   else{
-	echo "Brak połączenia z bazą";
+		echo "Brak połączenia z bazą";
 	}
 }
  ?>

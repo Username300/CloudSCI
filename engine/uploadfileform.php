@@ -1,3 +1,13 @@
+<?php
+  session_start(); //sesja dla wielokrotnego dodawania plikow do tego samego katalogu
+  if(isset($_POST['pid'])) $pid=$_POST['pid'];
+  else if(isset($_SESSION['cpid'])) {
+    $pid=$_SESSION['cpid'];
+    unset($_SESSION['cpid']);
+  }
+  else $pid=0;
+?>
+
 <!DOCTYPE HTML>
 <html lang="pl">
   <head>
@@ -9,12 +19,6 @@
     Wybierz plik: <input type="file" name="file" /><br>
     <input type="hidden" name="pid" value="
     <?php
-    if(isset($_POST['pid'])) $pid=$_POST['pid'];
-    else if(isset($_SESSION['cpid'])) {
-      $pid=$_SESSION['cpid'];
-      unset($_SESSION['cpid']);
-    }
-    else $pid=0;
     echo $pid;
     ?>
     "/>

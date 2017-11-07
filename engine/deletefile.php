@@ -1,6 +1,6 @@
 <?php
 function remdir($id,$connect,$dbprefix) { //przyjmuje id oraz dane polaczenia do sql
-  if(mysqli_connect_errno()==0)
+  if(mysqli_connect_errno()==0 && $id>0)
   {
       $result = $connect->query("SELECT id,type,path FROM files$dbprefix WHERE pid='$id'");
       while($row = $result->fetch_assoc()){
