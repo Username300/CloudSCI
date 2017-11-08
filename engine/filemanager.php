@@ -84,7 +84,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
     else if($files[$i]['type']==="FILE"){
       echo "
       <div style='width:860px;height:25px;border:1px solid black;'>
-        <div style='width:400px;height:25px;border-right:1px solid black;float:left;'><a href='openfile.php?id=".$files[$i]['id']."'>".$files[$i]['name']."</a></div>
+        <div style='width:400px;height:25px;border-right:1px solid black;float:left;'><a href='openfile.php?id=".$files[$i]['id']."&pid=".$current_dir."'>".$files[$i]['name']."</a></div>
         <div style='float:left;width:60px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['ext']."</div>
         <div style='float:left;width:170px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['updated']."</div>
         <div style='float:left;width:70px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['size']." KB</div>
