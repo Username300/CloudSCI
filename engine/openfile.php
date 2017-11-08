@@ -36,13 +36,25 @@ if(mysqli_connect_errno()==0)
     </form>
     <h1><?php echo $filename; ?></h1>
       <?php
-      if($ext==="mp4"){ //select video files
-        echo "<video width='600' controls>";
+      if($ext==="mp4" || $ext==="webm" || $ext==="ogg"){ //video player
+        echo "<video controls autoplay style='width:600px;'>";
         echo "<source src='".$path."' type='video/".$ext."'>";
         echo "Your browser does not support HTML5 video.";
         echo "</video>";
       }
-      //else if audio, ... photo
+      else if($ext==="mp3" || $ext==="wav" || $ext==="flac"){ //audio player
+        if($ext==="mp3") $ext = "mpeg";
+        echo "<audio controls autoplay style='width:600px;'>";
+        echo "<source src='".$path."' type='audio/".$ext."'>";
+        echo "Your browser does not support HTML5 audio.";
+        echo "</audio>";
+      }
+      else if($ext==="jpg"|| $ext==="jpeg" || $ext==="png" || $ext==="bmp" || $ext==="gif" || $ext==="tiff"){ //zdjecia
+        echo "<embed src='".$path."' width='600px'>";
+      }
+      else if($ext==="pdf"){
+        echo "<object data='".$path."' type='application/pdf' width='100%' height='500px;'>";
+      }
       else{
         echo "Podgląd jest niedostępny.";
       }

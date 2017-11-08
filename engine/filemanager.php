@@ -70,7 +70,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
         <div style='width:400px;height:25px;border-right:1px solid black;float:left;'><a href='filemanager.php?pid=".$files[$i]['id']."'>".$files[$i]['name']."</a></div>
         <div style='float:left;width:60px;height:25px;padding-left:10px;border-right:1px solid black;'>katalog</div>
         <div style='float:left;width:170px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['updated']."</div>
-        <div style='float:left;width:70px;height:25px;padding-left:10px;border-right:1px solid black;'>---</div>
+        <div style='float:left;width:80px;height:25px;padding-left:10px;border-right:1px solid black;'>---</div>
         <div style='float:left;width:40px;height:25px;'>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
@@ -87,7 +87,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
         <div style='width:400px;height:25px;border-right:1px solid black;float:left;'><a href='openfile.php?id=".$files[$i]['id']."&pid=".$current_dir."'>".$files[$i]['name']."</a></div>
         <div style='float:left;width:60px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['ext']."</div>
         <div style='float:left;width:170px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['updated']."</div>
-        <div style='float:left;width:70px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['size']." KB</div>
+        <div style='float:left;width:80px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['size']." KB</div>
         <div style='float:left;width:60px;height:25px;border-right:1px solid black;'>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
