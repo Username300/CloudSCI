@@ -1,23 +1,60 @@
+<?php
+include('config.php');
+
+?>
 <!DOCTYPE HTML>
 <html lang="pl">
   <head>
-	   <title>Zarejestruj się - The Cloud Project</title>
+  
+  <!--
+  //////////////////////////////
+  //                          //
+  // Pamiętaj, by dodać CSS   //
+  //   i pliki bootstrapa     //
+  //                          //
+  //////////////////////////////
+  -->
+  
+	   <title>Zarejestruj się - <?php echo $project_title; ?></title>
 	   <meta charset="utf-8">
+	   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	   <link rel="stylesheet" href="..\css\clouds.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	
+	<!-- Font-Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
-    <form action="register.php" method="post">
-      <h1>Formularz rejestracyjny</h1>
-      Podaj login: <input type="text" name="login"><br>
-      Podaj hasło: <input type="password" name="password"><br>
-      <h3>Hasło musi mieć conajmniej 8 znaków</h3><br>
-      Powtórz hasło: <input type="password" name="password2"><br>
-      Zabezpieczenie antyspamowe: Dwa + 2 * cztery to... <input type="text" name="spambot"><br>
-      <button type='submit'>Zarejestruj się</button>
-      <br><br>
-    </form>
-    <form action="../index.php">
-      <button type='submit'>Wróć do strony głównej</button>
-    </form>
+  
+  <div class="register-main col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="register-content col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		<form action="register.php" method="post" class="register-form">
+			  <img src="..\img\clouds_logo2.png" alt="CloudS" class="img-logo">
+			  <h1>Formularz rejestracyjny</h1>
+			  
+			  
+			  Podaj login: <br><input type="text" name="login" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><br>
+			  <h4>Hasło musi mieć conajmniej 8 znaków!</h4>
+			  Podaj hasło: <br><input type="password" name="password" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><br><br>
+			  Powtórz hasło: <br><input type="password" name="password2" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><br><br>
+			  Zabezpieczenie antyspamowe: Dwa + 2 * cztery to...<br> <input type="text" name="spambot" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><br><br>
+			  <br>
+			  <div style="text-align: center;"><button type='sumbit' class="btn btn-success">Zarejestruj się</button></div>
+			  
+		</form>
+		<br>
+		<div style="text-align: center;"><a href="index.php"><button type='button' class="btn btn-danger">Wróć do strony głównej</button></a></div>
+		<br>
+	  
+	</div>
+	</div>
+	
+	<div class="clearfix"></div>
+	
+	
   </body>
 </html>
 
