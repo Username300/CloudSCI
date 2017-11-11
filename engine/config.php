@@ -1,4 +1,7 @@
 <?php //dane dla XAMPPa - dla serwera trzeba zmienic!
+
+$project_title = "CloudS";
+
 $dbhost="localhost";
 $dbusername="root";
 $dbpassword="";
