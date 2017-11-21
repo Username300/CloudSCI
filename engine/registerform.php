@@ -33,7 +33,7 @@ include('config.php');
 	<div class="register-content col-lg-6 col-md-6 col-sm-12 col-xs-12">
 		<form action="register.php" method="post" class="register-form">
 			  <img src="..\img\clouds_logo2.png" alt="CloudS" class="img-logo">
-			  <h1>Formularz rejestracyjny</h1>
+			  <h1 id="reg_h1">Formularz rejestracyjny</h1>
 			  
 			  
 			  Podaj login: <br><input type="text" name="login" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><br>
