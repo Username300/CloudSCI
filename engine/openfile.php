@@ -4,9 +4,9 @@ session_start();
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 if(mysqli_connect_errno()==0)
 {
-  if(isset($_GET['id']) && isset($_SESSION['login'])) {
-    $id = $_GET['id'];
-    $current_dir = $_GET['pid'];
+  if(isset($_POST['id']) && isset($_SESSION['login'])) {
+    $id = $_POST['id'];
+    $current_dir = $_POST['pid'];
     $login = $_SESSION['login'];
     $result = $connect->query("SELECT name,ext,path FROM files$dbprefix WHERE id='$id' AND owner='$login' AND type='FILE'");
     $row = $result->fetch_assoc();
