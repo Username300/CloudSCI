@@ -15,24 +15,25 @@ html,body{
 .register-form h1{
 	text-align: center;
 }
+#reg_h1{
+	text-align: center;
+}
 .register-content{
-	background-color: white;
 	width: 500px;
-	opacity: 0.8;
 	margin-top: 60px;
 	border-radius: 30px;
+	background: rgba(255,255,255, 0.8);
 }
 .goback-btn{
 	display: block;
 	margin: 0 auto;
 }
 .img-logo{
-	width: 200px;
+	width: 220px;
 	height: 120px;
 	display: block;
 	margin: 0 auto;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 10px 20px;
 	border-bottom: 2px solid red;
 }
 .oferta{
