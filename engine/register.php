@@ -1,10 +1,15 @@
 <?php
 require_once("config.php");
+require_once("addons.php");
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 $password=$_POST['password'];
+$password = string_secure($password);
 $ver=$_POST['password2'];
+$ver = string_secure($ver);
 $spambot=$_POST['spambot'];
+$spambot = string_secure($spambot);
 $login=$_POST["login"];
+$login = string_secure($login);
 $date=date('Y-m-d H:i:s', time());
 if($password!=$ver){
 	header("Location: registerform.php?err=1"); //blad: hasla nie zgadzaja sie
@@ -16,6 +21,10 @@ else if(strlen($password)<8){
 }
 else if($spambot!=10){
 	header("Location: registerform.php?err=3"); //blad: zly spambot
+	die();
+}
+else if(strlen($login)<3 || strlen($login)>31){
+	header("Location: registerform.php?err=5"); //blad: nieprawidlowa dlugosc loginu
 	die();
 }
 else{

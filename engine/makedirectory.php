@@ -1,5 +1,6 @@
 <?php
 require_once("config.php");
+require_once("addons.php");
 session_start();
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 if(!isset($_SESSION['login'])){ //sprawdzanie czy zalogowany
@@ -8,7 +9,9 @@ if(!isset($_SESSION['login'])){ //sprawdzanie czy zalogowany
 }
 if(isset($_POST['pid']) && isset($_POST['name'])){
   $pid=$_POST['pid'];
+  $pid = string_secure($pid);
   $dir_name=$_POST['name'];
+  $dir_name = string_secure($dir_name);
 }
 else{
   header("Location: ../index.php"); //Blad:dane niekompletne

@@ -1,8 +1,11 @@
 <?php
 require_once("config.php");
+require_once("addons.php");
 session_start();
 $login=$_POST["login"];
+$login = string_secure($login);
 $password=$_POST["password"];
+$password = string_secure($password);
 $password=sha1(sha1($password));
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 if(mysqli_connect_errno()==0)
