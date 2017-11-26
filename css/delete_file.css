@@ -3,7 +3,21 @@ html,body{
 	height: 100%;
 }
 body{
-	background-color: #f6f6f6 !important;
+	background-color: #e24f4f !important;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	background-attachment: fixed;
+	/*background-color: #f6f6f6 !important;*/
+}
+.container{
+	background-color: #f6f6f6;
+	margin-top: 20px;
+	border-radius: 15px;
+}
+.middle{
+	margin: 0 auto;
 }
 .img{
 	width: 120px;
@@ -11,6 +25,7 @@ body{
 }
 .left{
 	float:left;
+	margin-bottom: 30px;
 }
 .test{
 	margin: 0 auto;
@@ -26,24 +41,14 @@ h1.test {
 	margin-left:10px;
 }
 @media (max-width: 991px) and (min-width: 769px){
-	.con{
-    margin-top: 60px;
-    padding: 0px 110px !important;
-	}
+
 }
 @media (min-width: 992px){
 	/* wieksze -   md-lg*/
-	.con{
-    margin-top: 120px;
-    padding: 0px 110px !important;
-	}
+
 }
 @media (max-width: 768px ) and (min-width: 577px){
 	
-	.con{
-    margin-top: 60px;
-    padding: 0px 110px !important;
-	}
 }
 
 @media (max-width: 576px){
@@ -51,8 +56,7 @@ h1.test {
 	.img{
 		width: 240px;
 		height: auto;
+		margin: 0 auto;
 	}
-	.con{
-		padding: 10px 15px !important;
-	}
+	
 }
