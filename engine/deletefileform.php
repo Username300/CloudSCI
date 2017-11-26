@@ -47,22 +47,22 @@ if(mysqli_connect_errno()==0)
   <body>
       <div class="body">
 	<div class="container">
-	
+
 	<br><br>
 		<div class="middle col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
 		<br>
 			<img src="../img/question.jpg" alt="img" class="img left">
-		
+
 			<div class="left">
-				  <h1>Usunąć plik <?php /*echo $filename; */?> ?</h1><br>
-				   
+				  <h1>Usunąć plik <?php echo $filename; ?> ?</h1><br>
+
 				  <h3>Uważaj! Usuwanie jest nieodwracalne!</h3><br>
 					<form action="deletefile.php" method="post" class="left">
-						 <input type="hidden" name="id" value="<?php/* echo $id;*/?>"/>
-						 <input type="hidden" name="pid" value="<?php /*echo $pid; */?>"/>
+						 <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+						 <input type="hidden" name="pid" value="<?php echo $pid; ?>"/>
 						 <button type='submit' class="btn btn-danger">Usuń na zawsze</button>
 					</form>
-						
+
 						<a href="filemanager.php"><button type='submit' class="btn btn-primary left cancel">Anuluj</button><a>
 						<br><br>
 			</div>
