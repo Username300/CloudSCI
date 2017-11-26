@@ -41,14 +41,65 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 <!DOCTYPE HTML>
 <html lang="pl">
   <head>
-	   <title>
-       <?php
-       echo $dir_name." - Pliki użytkownika ".$login;
-       ?>
-       - The Cloud Project</title>
+	  <!--
+  //////////////////////////////
+  //                          //
+  // Pamiętaj, by dodać CSS   //
+  //   i pliki bootstrapa     //
+  //                          //
+  //////////////////////////////
+  -->
+	   <title> <?php echo $dir_name." - Pliki użytkownika ".$login." - ".$project_title; ?></title>
 	   <meta charset="utf-8">
+	   
+	   <meta charset="utf-8">
+	   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	   <link rel="stylesheet" href="..\css\filemanager.css">
+	   
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Font-Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
+	  
+	    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	  <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <img class="navbar-brand img" src="../img/clouds_logo2.png" alt="<?php echo $project_title;?>">
+			</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="myNavbar">
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li><span class="login">Zalogowano jako: <?php echo $login; ?></span></li>
+					<li><a href="#"><span class="fa fa-power-off" aria-hidden="true"></span><span class="hidden-lg hidden-md hidden-sm">    Wyloguj się </span></a></li>
+				</ul>
+				
+				</div>
+			 
+			</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+</nav>
+  
+  <br><br><br><br>
+  
+  
+  
+  <div class="container">
+	  
+	  
+	  
+	  
     <h1>Lista plików w
     <?php
     echo $dir_name;
@@ -121,7 +172,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
     <?php
     echo "<input type='hidden' name='pid' value='".$current_dir."'>";
     ?>
-    <button type='submit'>Utwórz katalog</button>
+    <button type='submit' class="btn btn-success">Utwórz katalog</button>
   </form>
   <br>
   <form method="post" action="uploadfileform.php">
@@ -130,9 +181,14 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
     echo $current_dir;
     ?>
     >
-    <button type='submit'>Wyślij plik...</button>
+    <button type='submit' class="btn btn-info">Wyślij plik...</button>
   </form>
   <br> --- <br>
-  <a href='logout.php'>Wyloguj się</button>
+  <a href='logout.php'><button class="btn btn-link">Wyloguj się</button></a>
+  
+  </div> <!-- end of container  -->
+  <!-- include javascript, jQuery FIRST -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 </html>
