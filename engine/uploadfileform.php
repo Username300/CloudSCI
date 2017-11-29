@@ -163,17 +163,17 @@ function FileSelectHandler(e) {
 	// process all File objects
   if(e.type === 'change'){
   	for (var i = 0, f; f = files[i]; i++) {
-  		ParseFile(f);
+  		ParseFile(f,i);
   	}
   }
 }
 
-function ParseFile(file) {
+function ParseFile(file,num) {
 
 	Output(
-		"<p>Wybrano plik: <strong>" + file.name +
-		"</strong> typu: <strong>" + file.type +
-		"</strong> rozmiar: <strong>" + Math.round(file.size / 1024) +
+		"<p>"+(num+1)+". Nazwa pliku: <strong>" + file.name +
+		"</strong> typ: <strong>" + file.type +
+		"</strong> rozmiar: <strong>" + (Math.round(file.size / 1024)+1) +
 		"</strong> KB</p>"
 	);
 
