@@ -41,18 +41,17 @@
 		<img src="../img/uploadfiles.png" alt="Upload file" class="img-responsive img">
 
 		<div class="middle col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+      <div>
+			<form id="upload" action="uploadfile.php" method="post" enctype="multipart/form-data" class="col-lg-10 col-lg-offset-1">
+        <label for="fileselect">Wybierz pliki:</label>
 
-			<form action="uploadfile.php" method="post" enctype="multipart/form-data" class="col-lg-10 col-lg-offset-1">
-				<h2>Wybierz plik:</h2><br>
-
-				<input multiple type="file" name="file[]" class="btn btn-default"/><br>
+				<input multiple type="file" name="file[]" id="file" class="btn btn-default"/><br>
 
 				<input type="hidden" name="pid" value="<?php echo $pid; ?>"/>
+        <div id="filedrag">lub upuść je tutaj</div>
 				<div id="center1">
-
-				<button type="submit" name="sendfile" class="btn btn-success float">Wyślij plik</button>
-
-				</div>
+  			<button type="submit" name="sendfile" id="submitbutton" class="btn btn-success float">Wyślij plik</button>
+        </div>
 				</form>
 
 				<form method="get" action="filemanager.php" class="col-lg-10 col-lg-offset-1">
@@ -62,7 +61,8 @@
 					</div>
 				</form>
 
-				<div class="clearfix"></div>
+				<div class="clearfix" style='margin-top:10px;'></div>
+        <div id="messages" style='margin-top:10px;'></div>
 		<br><br>
 		</div>
 
@@ -108,3 +108,75 @@ if(isset($_GET['err'])){
   }
 }
 ?>
+
+<script>
+
+function $id(id) {
+	return document.getElementById(id);
+}
+// output information
+function Output(msg) {
+	var m = $id("messages");
+	m.innerHTML = msg + m.innerHTML;
+}
+
+// call initialization file
+if (window.File && window.FileList && window.FileReader) {
+	Init();
+}
+
+//
+// initialize
+function Init() {
+
+	var fileselect = $id("file"),
+		filedrag = $id("filedrag"),
+		submitbutton = $id("submitbutton");
+
+    fileselect.addEventListener("change", FileSelectHandler, false);
+	// is XHR2 available?
+	var xhr = new XMLHttpRequest();
+	if (xhr.upload) {
+
+		// file drop
+		filedrag.addEventListener("dragover", FileDragHover, false);
+		filedrag.addEventListener("dragleave", FileDragHover, false);
+		filedrag.addEventListener("drop", FileSelectHandler, false);
+		filedrag.style.display = "block";
+	}
+
+}
+// file drag hover
+function FileDragHover(e) {
+	e.stopPropagation();
+	e.preventDefault();
+	e.target.className = (e.type == "dragover" ? "hover" : "");
+}
+// file selection
+function FileSelectHandler(e) {
+	// cancel event and hover styling
+	FileDragHover(e);
+	// fetch FileList obj =ect
+	var files = e.target.files || e.dataTransfer.files;
+  if(e.type !== 'change')
+    $id('file').files = files;
+	// process all File objects
+  if(e.type === 'change'){
+  	for (var i = 0, f; f = files[i]; i++) {
+  		ParseFile(f);
+  	}
+  }
+}
+
+function ParseFile(file) {
+
+	Output(
+		"<p>Wybrano plik: <strong>" + file.name +
+		"</strong> typu: <strong>" + file.type +
+		"</strong> rozmiar: <strong>" + Math.round(file.size / 1024) +
+		"</strong> KB</p>"
+	);
+
+}
+
+</script>
