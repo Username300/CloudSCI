@@ -43,7 +43,7 @@
 		<div class="middle col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
       <div>
 			<form id="upload" action="uploadfile.php" method="post" enctype="multipart/form-data" class="col-lg-10 col-lg-offset-1">
-        <label for="fileselect">Wybierz pliki:</label>
+        <label for="fileselect">Wybierz pliki</label>
 
 				<input multiple type="file" name="file[]" id="file" class="btn btn-default"/><br>
 
