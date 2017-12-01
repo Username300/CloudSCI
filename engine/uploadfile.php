@@ -33,7 +33,6 @@ if(mysqli_connect_errno()==0)
       $target_file = $target_dir . $target_filename;
       $source_file_ext = pathinfo($file['name'], PATHINFO_EXTENSION); //ustalanie rozszerzenia pliku
       $source_filename = secure_string($connect, $file['name']); //nazwa wysylanego pliku
-      echo $source_filename;
       $owner = $_SESSION['login'];
       $date = date('Y-m-d H:i:s', time()); //aktualna data
       $file_size = intval($file['size']/1024); //rozmiar pliku (w KB)
@@ -59,10 +58,7 @@ if(mysqli_connect_errno()==0)
       die();
       }
     }
-    //header("Location: uploadfileform.php?err=0"); //brak bledu (jesli wysla sie wszystkie)
-    echo '<pre>';
-    var_dump($file_arr);
-    echo '</pre>';
+    header("Location: uploadfileform.php?err=0"); //brak bledu (jesli wysla sie wszystkie)
     die();
   }
   else{
