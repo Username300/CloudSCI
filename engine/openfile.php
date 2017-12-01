@@ -7,9 +7,9 @@ if(mysqli_connect_errno()==0)
 {
   if(isset($_POST['id']) && isset($_SESSION['login'])) {
     $id = $_POST['id'];
-    $id = string_secure($id);
+    $id = secure_string($connect, $id);
     $current_dir = $_POST['pid'];
-    $current_dir = string_secure($current_dir);
+    $current_dir = htmlspecialchars($current_dir);
     $login = $_SESSION['login'];
     $result = $connect->query("SELECT name,ext,path FROM files$dbprefix WHERE id='$id' AND owner='$login' AND type='FILE'");
     $row = $result->fetch_assoc();

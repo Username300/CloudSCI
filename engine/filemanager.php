@@ -1,5 +1,6 @@
 <?php
 require_once("config.php");
+require_once("addons.php");
 session_start();
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 if(!isset($_SESSION['login'])){ //sprawdzanie czy zalogowany
@@ -9,7 +10,7 @@ if(!isset($_SESSION['login'])){ //sprawdzanie czy zalogowany
 $login = $_SESSION['login'];
 if(!isset($_GET['pid'])) $current_dir=0; //sprawdzanie, w jakim katalogu sie znajdujemy
 else{
-  $current_dir=$_GET['pid'];
+  $current_dir=secure_string($connect, $_GET['pid']);
 }
 if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 {
@@ -51,19 +52,19 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
   -->
 	   <title> <?php echo $dir_name." - Pliki użytkownika ".$login." - ".$project_title; ?></title>
 	   <meta charset="utf-8">
-	   
+
 	   <meta charset="utf-8">
 	   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	   <link rel="stylesheet" href="..\css\filemanager.css">
-	   
+
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	
+
 	<!-- Font-Awesome -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
-	  
+
 	    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	  <div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -79,27 +80,27 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="myNavbar">
-				
+
 				<ul class="nav navbar-nav navbar-right">
 					<li><span class="login">Zalogowano jako: <?php echo $login; ?></span></li>
 					<li><a href="#"><span class="fa fa-power-off" aria-hidden="true"></span><span class="hidden-lg hidden-md hidden-sm">    Wyloguj się </span></a></li>
 				</ul>
-				
+
 				</div>
-			 
+
 			</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 </nav>
-  
+
   <br><br><br><br>
-  
-  
-  
+
+
+
   <div class="container">
-	  
-	  
-	  
-	  
+
+
+
+
     <h1>Lista plików w
     <?php
     echo $dir_name;
@@ -185,7 +186,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
   </form>
   <br> --- <br>
   <a href='logout.php'><button class="btn btn-link">Wyloguj się</button></a>
-  
+
   </div> <!-- end of container  -->
   <!-- include javascript, jQuery FIRST -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

@@ -9,9 +9,9 @@ if(!isset($_SESSION['login'])){ //sprawdzanie czy zalogowany
 }
 if(isset($_POST['pid']) && isset($_POST['name'])){
   $pid=$_POST['pid'];
-  $pid = string_secure($pid);
+  $pid = secure_string($connect, $pid);
   $dir_name=$_POST['name'];
-  $dir_name = string_secure($dir_name);
+  $dir_name = secure_string($connect, $dir_name);
 }
 else{
   header("Location: ../index.php"); //Blad:dane niekompletne

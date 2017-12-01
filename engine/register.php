@@ -3,13 +3,13 @@ require_once("config.php");
 require_once("addons.php");
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 $password=$_POST['password'];
-$password = string_secure($password);
+$password = secure_string($connect, $password);
 $ver=$_POST['password2'];
-$ver = string_secure($ver);
+$ver = secure_string($connect, $ver);
 $spambot=$_POST['spambot'];
-$spambot = string_secure($spambot);
+$spambot = secure_string($connect, $spambot);
 $login=$_POST["login"];
-$login = string_secure($login);
+$login = secure_string($connect, $login);
 $date=date('Y-m-d H:i:s', time());
 if($password!=$ver){
 	header("Location: registerform.php?err=1"); //blad: hasla nie zgadzaja sie

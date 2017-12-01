@@ -1,12 +1,13 @@
 <?php //okreslanie nazwy usuwanego pliku
 require_once("config.php");
+require_once("addons.php");
 session_start();
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 if(mysqli_connect_errno()==0)
 {
   if(isset($_POST['id']) && isset($_SESSION['login'])) {
     if(isset($_POST['pid'])) $pid=$_POST['pid'];
-    $id = $_POST['id'];
+    $id = secure_string($connect, $_POST['id']);
     $result = $connect->query("SELECT name,type FROM files$dbprefix WHERE id='$id'");
     $row = $result->fetch_assoc();
     $filename = $row['name'];

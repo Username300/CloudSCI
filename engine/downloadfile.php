@@ -6,7 +6,7 @@ if(mysqli_connect_errno()==0)
 {
   if(isset($_POST['id']) && isset($_SESSION['login'])){
     $login = $_SESSION['login'];
-    $id = $_POST['id'];
+    $id = secure_string($connect, $_POST['id']);
     $result = $connect->query("SELECT name,path FROM files$dbprefix WHERE id='$id' AND owner='$login'");
     $row = $result->fetch_assoc();
     $path = $row['path'];
