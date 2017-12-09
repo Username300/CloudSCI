@@ -83,7 +83,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 
 				<ul class="nav navbar-nav navbar-right">
 					<li><span class="login">Zalogowano jako: <?php echo $login; ?></span></li>
-					<li><a href="#"><span class="fa fa-power-off" aria-hidden="true"></span><span class="hidden-lg hidden-md hidden-sm">    Wyloguj się </span></a></li>
+					<li><a href="logout.php"><span class="fa fa-power-off" aria-hidden="true"></span><span class="hidden-lg hidden-md hidden-sm">    Wyloguj się </span></a></li>
 				</ul>
 
 				</div>
@@ -110,29 +110,29 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 <?php
   if($current_dir!=0){ //sprawdzanie czy mozna przejsc katalog wyzej
     echo "
-    <div style='width:860px;height:25px;border:1px solid black;'>
+    <div class='back-div'>
       <form method='get' action='filemanager.php'>
       <input type='hidden' name='pid' value='".$dir_parent."'>
-      <button type='submit'>&uarr; Wstecz</button></form>
+      <button class='btn btn-primary back-btn' type='submit'>&uarr; Wstecz</button></form>
     </div>
     ";
   }
   for($i=0;$i<$num_of_files;$i++){ //divy z pojedynczymi plikami
     if($files[$i]['type']==="DIR"){
       echo "
-      <div style='width:860px;height:25px;border:1px solid black;'>
-        <div style='width:400px;height:25px;border-right:1px solid black;float:left;'>
+      <div class='line-dir'>
+        <div class='file-dir'>
           <form method='get' action='filemanager.php'>
           <input type='hidden' name='pid' value='".$files[$i]['id']."'>
-          <button type='submit'>".$files[$i]['name']."</button></form></div>
-        <div style='float:left;width:60px;height:25px;padding-left:10px;border-right:1px solid black;'>katalog</div>
-        <div style='float:left;width:170px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['updated']."</div>
-        <div style='float:left;width:80px;height:25px;padding-left:10px;border-right:1px solid black;'>---</div>
-        <div style='float:left;width:40px;height:25px;'>
+          <button type='submit' class='btn btn-link'><i class='fa fa-folder-open' aria-hidden='true'></i> ".$files[$i]['name']."</button></form></div>
+        <div class='ext-dir'>katalog</div>
+        <div class='update-dir'>".$files[$i]['updated']."</div>
+        <div class='size-dir'>---</div>
+        <div class='delete-dir'>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
             <input type='hidden' name='pid' value='".$current_dir."'>
-            <button type='submit'>Usuń</button>
+            <button type='submit' class='btn btn-link btn-delete-dir'><i class='fa fa-times' aria-hidden='true'></i> Usuń</button>
           </form>
         </div>
       </div>
@@ -140,26 +140,26 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
     }
     else if($files[$i]['type']==="FILE"){
       echo "
-      <div style='width:860px;height:25px;border:1px solid black;'>
-        <div style='width:400px;height:25px;border-right:1px solid black;float:left;'>
+      <div class='line-file'>
+        <div class='file-file'>
           <form method='post' action='openfile.php'>
           <input type='hidden' name='id' value='".$files[$i]['id']."'>
           <input type='hidden' name='pid' value='".$current_dir."'>
-          <button type='submit'>".$files[$i]['name']."</button></form></div>
-        <div style='float:left;width:60px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['ext']."</div>
-        <div style='float:left;width:170px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['updated']."</div>
-        <div style='float:left;width:80px;height:25px;padding-left:10px;border-right:1px solid black;'>".$files[$i]['size']." KB</div>
-        <div style='float:left;width:60px;height:25px;border-right:1px solid black;'>
+          <button type='submit' class='btn btn-link'>".$files[$i]['name']."</button></form></div>
+        <div class='ext-file'>".$files[$i]['ext']."</div>
+        <div class='update-file'>".$files[$i]['updated']."</div>
+        <div class='size-file'>".$files[$i]['size']." KB</div>
+        <div class='delete-dir-file'>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
             <input type='hidden' name='pid' value='".$current_dir."'>
-            <button type='submit'>Usuń</button>
+            <button class='btn btn-link delete' type='submit'> <i class='fa fa-times' aria-hidden='true'></i> Usuń</button>
           </form>
         </div>
-        <div style='float:left;width:40px;height:25px;'>
+        <div class='download-file'>
           <form method='post' action='downloadfile.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
-            <button type='submit'>Pobierz</button>
+            <button class='btn btn-link' type='submit'><i class='fa fa-cloud-download' aria-hidden='true'></i> Pobierz</button>
           </form>
         </div>
       </div>
@@ -173,7 +173,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
     <?php
     echo "<input type='hidden' name='pid' value='".$current_dir."'>";
     ?>
-    <button type='submit' class="btn btn-success">Utwórz katalog</button>
+    <button type='submit' class="btn btn-success"><i class="fa fa-folder-open" aria-hidden="true"></i> Utwórz katalog</button>
   </form>
   <br>
   <form method="post" action="uploadfileform.php">
@@ -182,7 +182,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
     echo $current_dir;
     ?>
     >
-    <button type='submit' class="btn btn-info">Wyślij plik...</button>
+    <button type='submit' class="btn btn-info"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Wyślij plik...</button>
   </form>
   <br> --- <br>
   <a href='logout.php'><button class="btn btn-link">Wyloguj się</button></a>
