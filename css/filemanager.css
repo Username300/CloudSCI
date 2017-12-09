@@ -72,6 +72,7 @@
 	height:34px;
 	text-align: center;
 	border-right:1px solid #dcdee2;
+	padding-top: 5px;
 }
 .size-dir{
 	float:left;
@@ -87,6 +88,7 @@
 	height:34px;
 	text-align: center;
 	border-right:1px solid #dcdee2;
+	padding-top: 5px;
 }
 .delete-dir{
 	float:left;
