@@ -1,5 +1,6 @@
 <?php
 require_once("config.php");
+require_once("addons.php");
 session_start();
 $connect = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 if(mysqli_connect_errno()==0)
