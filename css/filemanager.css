@@ -18,3 +18,108 @@
 	position: relative;
 	display: block;
 }
+.line-dir{
+	width:860px;
+	height:34px;
+	border:1px solid #d2d6e0; 
+	background-color: #e5e6e8
+}
+.line-file{
+	width:860px;
+	height:35px;
+	border:1px solid #dcdee2; 
+	background-color: #eff0f2
+}
+.ext-dir{
+	float:left;
+	width:60px;
+	height:33px;
+	text-align: center;
+	border-right:1px solid #d2d6e0;
+	padding-top: 5px;
+}
+.ext-file{
+	float:left;
+	width:60px;
+	height:34px;
+	text-align: center;
+	border-right:1px solid #dcdee2; 
+	padding-top: 5px;
+}
+.file-file{
+	width:400px;
+	height:34px;
+	border-right:1px solid #dcdee2;
+	float:left;
+}
+.file-dir{
+	width:400px;
+	height:33px;
+	border-right:1px solid #d2d6e0;
+	float:left;
+}
+.update-dir{
+	float:left;
+	width:170px;
+	height:33px;
+	text-align: center;
+	border-right:1px solid #d2d6e0;
+	padding-top: 5px;
+}
+.update-file{
+	float:left;
+	width:170px;
+	height:34px;
+	text-align: center;
+	border-right:1px solid #dcdee2;
+}
+.size-dir{
+	float:left;
+	width:80px;
+	height:33px;
+	text-align: center;
+	border-right:1px solid #d2d6e0;
+	padding-top: 5px;
+}
+.size-file{
+	float:left;
+	width:80px;
+	height:34px;
+	text-align: center;
+	border-right:1px solid #dcdee2;
+}
+.delete-dir{
+	float:left;
+	width:40px;
+	height:25px;
+}
+.delete-dir-file{
+	float:left;
+	width:60px;
+	height:34px;
+	border-right:1px solid #dcdee2;
+}
+.download-file{
+	float:left;
+	width:40px;
+	height:25px;
+}
+.btn-delete-dir{
+	margin-left: 35px;
+}
+.delete{
+	padding: 5px 5px !important;
+}
+.download{
+	padding: 5px 10px !important;
+}
+.back-div{
+	width:860px;
+	height:45px;
+	background-color: #F5F5DC;
+	border: 1px solid #ededd7;
+}
+.back-btn{
+	margin-left: 30px;
+	margin-top: 5px;
+}
