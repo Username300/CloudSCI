@@ -1,3 +1,6 @@
+ALL RIGHTS RESERVED. Copying, modifying or distibuting without permission is prohibited without exceptions. 
+
+
 ## I. OGÓLNY ZARYS DZIAŁANIA
 Chmura będzie się opierać na mySQLu, którego budowa zostanie określona poniżej. Użytkownik będzie za pomocą witryny umieszczał plik/katalog na serwerze, a sam serwer umieścli go w katalogu z plikami(być może będzie tworzony katalog dla kazdego użytkownika; jeśli nie - wszystkie pliki luzem w jednym katalogu. Przy wysłaniu pliku zostanie utworzony wpis w bazie danych, który będzie zawierał nazwę pliku, unikalny identyfikator oraz właściciela, natomias plik po stronie serwera zmieni nazwę do postaci swojego identyfikatora (np. 0000001,17483943 lub 23545554.jpg - zobaczymy, czy zapiszemy z rozszerzeniem). Obsługiwane również będą “wirtualne katalogi” - w bazie danych będą miały charakter plików, jednak nada się im nieco inne parametry, np DIR. Każdy plik będzie posiadał pid - identyfikator obiektu nadrzędnego, czyli nic innego jak id folderu, w którym sie znajduje - to umożliwi wejście do katalogów oraz rozwiązanie problemu unikalności nazw folderów(domyślnie=0). Na pewno ustawi się limit pliku, np. 20MB. Ze strony klienta webowego będzie do zrobienia panel logowania, eksplorator plików, menu wysyłania/pobierania/usuwania plików, panel administratora do zarządzania wszystkimi plikami.
 
