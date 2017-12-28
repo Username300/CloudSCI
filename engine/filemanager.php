@@ -93,13 +93,29 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 </nav>
 
   <br><br><br><br>
-
+<?php //petla sciezki dostepowej
+$i = 0;
+$dir_temp = $current_dir;
+while($dir_temp!=0){
+  $result = $connect->query("SELECT pid,name FROM files$dbprefix WHERE id='$dir_temp'");
+  $dir = $result->fetch_assoc();
+  $path[$i]['id'] = $dir_temp;
+  $path[$i]['name'] = $dir['name'];
+  $dir_temp = $dir['pid'];
+  $i++;
+}
+$path[$i]['id'] = 0;
+$path[$i]['name'] = "Katalog główny";
+//wyswietlanie sciezki
+echo "<br>";
+for($j = count($path)-1;$j>=0;$j--){
+  echo "<a href='filemanager.php?pid=".$path[$j]['id']."'>".$path[$j]['name']."</a> / ";
+}
+echo "<br>";
+?>
 
 
   <div class="container">
-
-
-
 
     <h1>Lista plików w
     <?php
@@ -184,8 +200,6 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
     >
     <button type='submit' class="btn btn-info"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Wyślij plik...</button>
   </form>
-  <br> --- <br>
-  <a href='logout.php'><button class="btn btn-link">Wyloguj się</button></a>
 
   </div> <!-- end of container  -->
   <!-- include javascript, jQuery FIRST -->
