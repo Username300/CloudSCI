@@ -22,6 +22,12 @@ function remdir($id,$connect,$dbprefix) { //przyjmuje id oraz dane polaczenia do
   }
 }
 
+function refresh_usedspace($connect, $username, $dbprefix){
+  $result = $connect->query("SELECT sum(size) AS size FROM files$dbprefix WHERE owner='$username';");
+  $row = $result->fetch_assoc();
+  $size = intval($row['size']);
+  $result = $connect->query("UPDATE users$dbprefix SET usedspace=$size WHERE login='$username';");
+}
 
 require_once("config.php");
 session_start();
@@ -43,14 +49,14 @@ if(mysqli_connect_errno()==0)
     $type = $row['type']; //plik czy katalog
     if($type === "DIR"){
       remdir($id,$connect,$dbprefix);
-      //todo: rekalkulowanie wolnego miejsca
+      refresh_usedspace($connect, $owner, $dbprefix);
       header("Location: filemanager.php");
       die();
     }
     else if($type === "FILE"){
       unlink($path);
       $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$id'"); //usuwanie wpisu pliku
-      //todo: rekalkulowanie wolnego miejsca
+      refresh_usedspace($connect, $owner, $dbprefix);
       header("Location: filemanager.php?pid=$pid");
       die();
     }

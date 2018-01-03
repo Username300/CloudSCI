@@ -1,11 +1,53 @@
 <?php
 //Zawiera dodatkowy zestaw funkcji uzywanych globalnie
+require_once("config.php");
 
-function secure_string($connect, $string){
+function secure_string($connect, $string){ //zabezpieczenie stringow do bazy danych
   $string = $connect->real_escape_string($string);
   $string = htmlspecialchars($string);
   return $string;
 }
 
+class Statistics{    //klasa dostawcy statystyk profilowych
+  private $connect;
+  private $username;
+  private $dbprefix;
 
- ?>
+  function __construct($connect, $username, $dbprefix) {
+    $this->connect = $connect;
+    $this->username = $username;
+    $this->dbprefix = $dbprefix;
+  }
+
+  function num_of_files(){ //ilosc plikow
+    $result = $this->connect->query("SELECT count(id) AS num FROM files$this->dbprefix WHERE owner='$this->username' AND type='FILE';");
+    $row = $result->fetch_assoc();
+    return $row['num'];
+  }
+
+  function size_profile(){ //rozmiar profilu (w KB)
+    $result = $this->connect->query("SELECT usedspace FROM users$this->dbprefix WHERE login='$this->username'");
+    $row = $result->fetch_assoc();
+    return $row['usedspace'];
+  }
+
+  function total_storage(){ //calkowita dostepna przestrzen (w KB)
+    $result = $this->connect->query("SELECT storage FROM users$this->dbprefix WHERE login='$this->username'");
+    $row = $result->fetch_assoc();
+    return $row['storage'];
+  }
+
+  function filesize_comparison(){ //zliczanie zajetego miejsca przez okreslone rozszerzenia plikow - zwraca tablice 2d
+    $result = $this->connect->query("SELECT ext, SUM(size) AS size FROM files$this->dbprefix WHERE owner='$this->username' GROUP BY ext ORDER BY size DESC");
+    while($row = $result->fetch_assoc()){
+      if($row['size']!=0) $output[] = $row;
+    }
+    if(!isset($output)){
+       $output[0]['ext']='';
+       $output[0]['size']=0;
+    }
+    return $output;
+  }
+}
+
+?>
