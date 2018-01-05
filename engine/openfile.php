@@ -27,7 +27,7 @@ if(mysqli_connect_errno()==0)
 <!DOCTYPE HTML>
 <html lang="pl">
   <head>
-	   <title><?php echo $filename; ?> - Media Player - The Cloud Project</title>
+	   <title><?php echo $filename; ?> - Przeglądarka plików - CloudS</title>
 	   <meta charset="utf-8">
   </head>
   <body>
@@ -56,7 +56,7 @@ if(mysqli_connect_errno()==0)
         echo "<embed src='".$path."' width='600px'>";
       }
       else if($ext==="pdf"){
-        echo "<object data='".$path."' type='application/pdf' width='100%' height='500px;'>";
+        echo "<embed src='".$path."' alt='pdf' pluginspage='http://www.adobe.com/products/acrobat/readstep2.html'>";
       }
       else{
         echo "Podgląd jest niedostępny.";
