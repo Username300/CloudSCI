@@ -92,7 +92,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 	  </div><!-- /.container-fluid -->
 </nav>
 
-  <br><br><br><br>
+  <br><br><br>
 <?php //petla sciezki dostepowej
 $i = 0;
 $dir_temp = $current_dir;
@@ -107,16 +107,26 @@ while($dir_temp!=0){
 $path[$i]['id'] = 0;
 $path[$i]['name'] = "Katalog główny";
 //wyswietlanie sciezki
-echo "<br>";
+
+?>
+
+<div class="path">
+	<?php
+	echo "<br>";
 for($j = count($path)-1;$j>=0;$j--){
   echo "<a href='filemanager.php?pid=".$path[$j]['id']."'>".$path[$j]['name']."</a> / ";
 }
 echo "<br>";
-?>
+	
+	?>
+</div>
 
 
   <div class="container">
-
+	
+  
+  
+  
     <h1>Lista plików w
     <?php
     echo $dir_name;
@@ -141,14 +151,14 @@ echo "<br>";
           <form method='get' action='filemanager.php'>
           <input type='hidden' name='pid' value='".$files[$i]['id']."'>
           <button type='submit' class='btn btn-link'><i class='fa fa-folder-open' aria-hidden='true'></i> ".$files[$i]['name']."</button></form></div>
-        <div class='ext-dir'>katalog</div>
-        <div class='update-dir'>".$files[$i]['updated']."</div>
+        <div class='ext-dir hidden-xs'>katalog</div>
+        <div class='update-dir hidden-xs'>".$files[$i]['updated']."</div>
         <div class='size-dir'>---</div>
         <div class='delete-dir'>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
             <input type='hidden' name='pid' value='".$current_dir."'>
-            <button type='submit' class='btn btn-link btn-delete-dir'><i class='fa fa-times' aria-hidden='true'></i> Usuń</button>
+            <button type='submit' class='btn btn-link btn-delete-dir'><i class='fa fa-times' aria-hidden='true'></i> <span class='hidden-xs-down hidden-xs'>Usuń</span></button>
           </form>
         </div>
       </div>
@@ -162,20 +172,20 @@ echo "<br>";
           <input type='hidden' name='id' value='".$files[$i]['id']."'>
           <input type='hidden' name='pid' value='".$current_dir."'>
           <button type='submit' class='btn btn-link'>".$files[$i]['name']."</button></form></div>
-        <div class='ext-file'>".$files[$i]['ext']."</div>
-        <div class='update-file'>".$files[$i]['updated']."</div>
+        <div class='ext-file hidden-xs'>".$files[$i]['ext']."</div>
+        <div class='update-file hidden-xs'>".$files[$i]['updated']."</div>
         <div class='size-file'>".$files[$i]['size']." KB</div>
         <div class='delete-dir-file'>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
             <input type='hidden' name='pid' value='".$current_dir."'>
-            <button class='btn btn-link delete' type='submit'> <i class='fa fa-times' aria-hidden='true'></i> Usuń</button>
+            <button class='btn btn-link delete' type='submit'> <i class='fa fa-times' aria-hidden='true'></i><span class='hidden-xs hidden-sm hidden-xs-down'> Usuń</span></button>
           </form>
         </div>
         <div class='download-file'>
           <form method='post' action='downloadfile.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
-            <button class='btn btn-link' type='submit'><i class='fa fa-cloud-download' aria-hidden='true'></i> Pobierz</button>
+            <button class='btn btn-link' type='submit'><i class='fa fa-cloud-download' aria-hidden='true'></i><span class='hidden-xs hidden-sm hidden-xs-down'> Pobierz</span></button>
           </form>
         </div>
       </div>
