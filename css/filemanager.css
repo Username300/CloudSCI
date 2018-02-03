@@ -50,12 +50,20 @@
 	width:400px;
 	height:34px;
 	border-right:1px solid #dcdee2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: inline-block;
 	float:left;
 }
 .file-dir{
 	width:400px;
 	height:33px;
 	border-right:1px solid #d2d6e0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: inline-block;
 	float:left;
 }
 .update-dir{
