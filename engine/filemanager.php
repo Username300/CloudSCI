@@ -8,6 +8,7 @@ if(!isset($_SESSION['login'])){ //sprawdzanie czy zalogowany
   die();
 }
 $login = $_SESSION['login'];
+$stat = new Statistics($connect, $login, $dbprefix); //dostep do statystyk
 if(!isset($_GET['pid'])) $current_dir=0; //sprawdzanie, w jakim katalogu sie znajdujemy
 else{
   $current_dir=secure_string($connect, $_GET['pid']);
@@ -117,16 +118,16 @@ for($j = count($path)-1;$j>=0;$j--){
   echo "<a href='filemanager.php?pid=".$path[$j]['id']."'>".$path[$j]['name']."</a> / ";
 }
 echo "<br>";
-	
+
 	?>
 </div>
 
 
   <div class="container">
-	
-  
-  
-  
+
+
+
+
     <h1>Lista plików w
     <?php
     echo $dir_name;
@@ -153,7 +154,7 @@ echo "<br>";
           <button type='submit' class='btn btn-link'><i class='fa fa-folder-open' aria-hidden='true'></i> ".$files[$i]['name']."</button></form></div>
         <div class='ext-dir hidden-xs'>katalog</div>
         <div class='update-dir hidden-xs'>".$files[$i]['updated']."</div>
-        <div class='size-dir'>---</div>
+        <div class='size-dir'>".$stat->local_sizeOfDir($files[$i]['id'])." KB</div>
         <div class='delete-dir'>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
@@ -192,6 +193,7 @@ echo "<br>";
       ";
     }
   }
+
 ?>
   <br>
   <form method="post" action="makedirectory.php">
@@ -210,7 +212,15 @@ echo "<br>";
     >
     <button type='submit' class="btn btn-info"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Wyślij plik...</button>
   </form>
-
+<?php
+  echo "<br>Zmienne statystyczne do zabawy :)<br>Plików: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)." KB<br>-------<br>";
+  echo "Całk.il. plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
+  echo "Całk. dostępna przestrzeń: ".$stat->total_storage()."<br>Porównanie typów plików: ";
+  $tab = $stat->filesize_comparison();
+  echo "<pre>";
+  var_dump($tab);
+  echo "</pre>";
+?>
   </div> <!-- end of container  -->
   <!-- include javascript, jQuery FIRST -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

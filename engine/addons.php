@@ -38,15 +38,36 @@ class Statistics{    //klasa dostawcy statystyk profilowych
   }
 
   function filesize_comparison(){ //zliczanie zajetego miejsca przez okreslone rozszerzenia plikow - zwraca tablice 2d
-    $result = $this->connect->query("SELECT ext, SUM(size) AS size FROM files$this->dbprefix WHERE owner='$this->username' GROUP BY ext ORDER BY size DESC");
+    $result = $this->connect->query("SELECT ext, SUM(size) AS size, COUNT(id) AS files FROM files$this->dbprefix WHERE owner='$this->username' GROUP BY ext ORDER BY size DESC");
     while($row = $result->fetch_assoc()){
       if($row['size']!=0) $output[] = $row;
     }
     if(!isset($output)){
        $output[0]['ext']='';
        $output[0]['size']=0;
+       $output[0]['files']=0;
     }
     return $output;
+  }
+
+  function local_filesInDir($id){ //liczba plikow w katalogu - przyjmuje id katalogu
+    $result = $this->connect->query("SELECT count(id) AS num FROM files$this->dbprefix WHERE owner='$this->username' AND type='FILE' AND pid='$id'");
+    $row = $result->fetch_assoc();
+    return $row['num'];
+  }
+
+  function local_sizeOfDir($id){ //rozmiar katalogu - przyjmuje id katalogu
+    $result = $this->connect->query("SELECT id,type,size FROM files$this->dbprefix WHERE owner='$this->username' AND pid='$id'");
+    $count = 0; //w KB
+    while($row = $result->fetch_assoc()){
+      $data[] = $row;
+    }
+    if(!isset($data)) return 0;
+    foreach ($data as $object){
+      if($object['type']==="DIR") $count += $this->local_sizeOfDir($object['id']);
+      else if($object['type']==="FILE") $count += $object['size'];
+    }
+    return $count;
   }
 }
 
