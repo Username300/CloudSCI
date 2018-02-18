@@ -172,7 +172,7 @@ echo "<br>";
           <form method='post' action='openfile.php'>
           <input type='hidden' name='id' value='".$files[$i]['id']."'>
           <input type='hidden' name='pid' value='".$current_dir."'>
-          <button type='submit' class='btn btn-link'>".$files[$i]['name']."</button></form></div>
+          <button type='submit' class='btn btn-link'>".$files[$i]['name']." - <a href='filemvset.php?pid=".$current_dir."&move=".$files[$i]['id']."'>MOVE</a></button></form></div> <!--kod do modyfikacji-->
         <div class='ext-file hidden-xs'>".$files[$i]['ext']."</div>
         <div class='update-file hidden-xs'>".$files[$i]['updated']."</div>
         <div class='size-file'>".$files[$i]['size']." KB</div>
@@ -193,12 +193,19 @@ echo "<br>";
       ";
     }
   }
-
-?>
-  <br>
-  <form method="post" action="makedirectory.php">
-    Nazwa katalogu: <input type="text" name="name"><br>
-    <?php
+  echo "<br>";
+ if(isset($_SESSION['move'])){
+   $move_id=intval($_SESSION['move']);
+   $result = $connect->query("SELECT name,size FROM files$dbprefix WHERE id=$move_id AND owner='$login'");
+   $move_item = $result->fetch_assoc();
+   echo "Wybrany plik: ".$move_item['name']."<br>";
+   echo "<a href='filemv.php?id=".$move_id."&pid=".$current_dir."&action=1'>KOPIUJ TUTAJ</a> | ";
+   echo "<a href='filemv.php?id=".$move_id."&pid=".$current_dir."&action=2'>PRZENIEŚ TUTAJ</a> | ";
+   echo "<a href='filemv.php?id=".$move_id."&pid=".$current_dir."&action=0'>ANULUJ</a>";
+   echo "<br><br>";
+ }
+  echo "<form method='post' action='makedirectory.php'>
+    Nazwa katalogu: <input type='text' name='name'><br>";
     echo "<input type='hidden' name='pid' value='".$current_dir."'>";
     ?>
     <button type='submit' class="btn btn-success"><i class="fa fa-folder-open" aria-hidden="true"></i> Utwórz katalog</button>
@@ -212,6 +219,9 @@ echo "<br>";
     >
     <button type='submit' class="btn btn-info"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Wyślij plik...</button>
   </form>
+
+
+
 <?php
   echo "<br>Zmienne statystyczne do zabawy :)<br>Plików: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)." KB<br>-------<br>";
   echo "Całk.il. plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
@@ -221,6 +231,9 @@ echo "<br>";
   var_dump($tab);
   echo "</pre>";
 ?>
+
+
+
   </div> <!-- end of container  -->
   <!-- include javascript, jQuery FIRST -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

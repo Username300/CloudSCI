@@ -43,7 +43,7 @@ if(mysqli_connect_errno()==0)
     $owner = $_SESSION['login'];
     $id=$_POST['id'];
     settype($id, "integer");
-    $result = $connect->query("SELECT path,type FROM files$dbprefix WHERE id='$id'"); //pobieranie metadanych obiketu
+    $result = $connect->query("SELECT path,type FROM files$dbprefix WHERE id='$id' AND owner='$owner'"); //pobieranie metadanych obiketu
     $row = $result->fetch_assoc();
     $path = $row['path']; //sciezka do usuwanego pliku
     $type = $row['type']; //plik czy katalog
@@ -55,8 +55,12 @@ if(mysqli_connect_errno()==0)
     }
     else if($type === "FILE"){
       unlink($path);
-      $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$id'"); //usuwanie wpisu pliku
+      $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$id' AND owner='$owner'"); //usuwanie wpisu pliku
       refresh_usedspace($connect, $owner, $dbprefix);
+      header("Location: filemanager.php?pid=$pid");
+      die();
+    }
+    else{
       header("Location: filemanager.php?pid=$pid");
       die();
     }
