@@ -71,4 +71,32 @@ class Statistics{    //klasa dostawcy statystyk profilowych
   }
 }
 
+function responsive_filesize($size){ //automatyczna zmiana jednostek -> KB, MB, GB, TB x 1024
+  $size = intval($size);
+  $output = "";
+  if($size<=1024){
+    $output = $size." KB";
+    return $output;
+  }
+  else if($size>1024 && $size<=1048576){
+    $size = round($size/1024, 1);
+    $output = $size." MB";
+    return $output;
+  }
+  else if($size>1048576 && $size<=1073741824){
+    $size = $size/1024;
+    $size = round($size/1024, 1);
+    $output = $size." GB";
+    return $output;
+  }
+  else{
+    $size = $size/1024;
+    $size = $size/1024;
+    $size = round($size/1024, 1);
+    $output = $size." TB";
+    return $output;
+  }
+}
+
+
 ?>

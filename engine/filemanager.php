@@ -154,7 +154,7 @@ echo "<br>";
           <button type='submit' class='btn btn-link'><i class='fa fa-folder-open' aria-hidden='true'></i> ".$files[$i]['name']."</button></form></div>
         <div class='ext-dir hidden-xs'>katalog</div>
         <div class='update-dir hidden-xs'>".$files[$i]['updated']."</div>
-        <div class='size-dir'>".$stat->local_sizeOfDir($files[$i]['id'])." KB</div>
+        <div class='size-dir'>".responsive_filesize($stat->local_sizeOfDir($files[$i]['id']))."</div>
         <div class='delete-dir'>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
@@ -175,7 +175,7 @@ echo "<br>";
           <button type='submit' class='btn btn-link'>".$files[$i]['name']." - <a href='filemvset.php?pid=".$current_dir."&move=".$files[$i]['id']."'>MOVE</a></button></form></div> <!--kod do modyfikacji-->
         <div class='ext-file hidden-xs'>".$files[$i]['ext']."</div>
         <div class='update-file hidden-xs'>".$files[$i]['updated']."</div>
-        <div class='size-file'>".$files[$i]['size']." KB</div>
+        <div class='size-file'>".responsive_filesize($files[$i]['size'])."</div>
         <div class='delete-dir-file'>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
@@ -223,7 +223,7 @@ echo "<br>";
 
 
 <?php
-  echo "<br>Zmienne statystyczne do zabawy :)<br>Plików: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)." KB<br>-------<br>";
+  echo "<br>Zmienne statystyczne do zabawy :)<br>Plików: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)."<br>-------<br>";
   echo "Całk.il. plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
   echo "Całk. dostępna przestrzeń: ".$stat->total_storage()."<br>Porównanie typów plików: ";
   $tab = $stat->filesize_comparison();

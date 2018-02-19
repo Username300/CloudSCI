@@ -14,7 +14,11 @@ function remdir($id,$connect,$dbprefix) { //przyjmuje id oraz dane polaczenia do
           $tmp = $type['id'];
           $path = $type['path'];
           $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$tmp'");
-          unlink($path);
+          $result = $connect->query("SELECT count(id) AS ids FROM files$dbprefix WHERE path='$path'");
+          $row = $result->fetch_assoc();
+          if($row['ids']<1){
+            unlink($path);
+          }
         }
       }
       $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$id'"); //pusty katalog jest usuwany
@@ -54,8 +58,12 @@ if(mysqli_connect_errno()==0)
       die();
     }
     else if($type === "FILE"){
-      unlink($path);
       $result = $connect->query("DELETE FROM files$dbprefix WHERE id='$id' AND owner='$owner'"); //usuwanie wpisu pliku
+      $result = $connect->query("SELECT count(id) AS ids FROM files$dbprefix WHERE path='$path' AND owner='$owner'");
+      $row = $result->fetch_assoc();
+      if($row['ids']<1){
+        unlink($path);
+      }
       refresh_usedspace($connect, $owner, $dbprefix);
       header("Location: filemanager.php?pid=$pid");
       die();
