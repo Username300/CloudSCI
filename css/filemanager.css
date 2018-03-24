@@ -1,8 +1,10 @@
 .navbar{
 	border-radius: 0px !important;
+	color: white !important;
 }
 .navbar-inverse{
 	background-color: #002029 !important;
+	color: white !important;
 }
 .img{
 	width: 149px;
@@ -144,6 +146,36 @@
 /*.path{
 	font-weight: bold;
 }*/
+
+
+
+.footer{
+	width: 100%;
+	height: 155px;
+	background-color: #002029 ;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	color: white;
+	text-align: center;
+}
+.footeropen{
+	transition: All 1s ease;
+	transform: translate(0px);
+}
+.footerclose{
+	transition: All 1s ease;
+	transform: translate(0px,105px);
+}
+.white{
+	color:white;
+	text-decoration: none;
+}
+.footer a:hover{
+	text-decoration: none;
+	color: #549D27;
+}
+
 @media (min-width: 992px){
 	/* wieksze -   md-lg*/
 .path{
