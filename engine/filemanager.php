@@ -65,6 +65,27 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
+  
+	<script>
+	function footer(){
+		if ( document.getElementById("myFooter").classList.contains('footerclose') ){
+			
+			document.getElementById("myFooter").classList.remove('footerclose');
+			document.getElementById("myFooter").classList.add('footeropen');
+			document.getElementById("buttonft").style.transition="All 1s ease";
+			document.getElementById("buttonft").style.transform="rotate(180deg)";
+			
+		}else if(document.getElementById("myFooter").classList.contains('footeropen')){
+			
+			document.getElementById("myFooter").classList.add('footerclose');
+			document.getElementById("myFooter").classList.remove('footeropen');
+			document.getElementById("buttonft").style.transition="All 1s ease";
+			document.getElementById("buttonft").style.transform="rotate(0deg)";
+			
+		}
+	}
+	
+	</script>
 
 	    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	  <div class="container-fluid">
@@ -76,7 +97,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <img class="navbar-brand img" src="../img/clouds_logo2.png" alt="<?php echo $project_title;?>">
+			  <a href="../index.php"><img class="navbar-brand img" src="../img/clouds_logo2.png" alt="<?php echo $project_title;?>"></a>
 			</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -84,6 +105,15 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 
 				<ul class="nav navbar-nav navbar-right">
 					<li><span class="login">Zalogowano jako: <?php echo $login; ?></span></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Narzędzia
+						<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="uploadfileform.php">Dodaj plik</a></li>
+								<li><a href="#">Utwórz nowy katalog</a></li>
+								<li><a href="panelstat.php">Statystyki</a></li>
+							</ul>
+					</li>
 					<li><a href="logout.php"><span class="fa fa-power-off" aria-hidden="true"></span><span class="hidden-lg hidden-md hidden-sm">    Wyloguj się </span></a></li>
 				</ul>
 
@@ -108,7 +138,6 @@ while($dir_temp!=0){
 $path[$i]['id'] = 0;
 $path[$i]['name'] = "Katalog główny";
 //wyswietlanie sciezki
-
 ?>
 
 <div class="path">
@@ -118,7 +147,6 @@ for($j = count($path)-1;$j>=0;$j--){
   echo "<a href='filemanager.php?pid=".$path[$j]['id']."'>".$path[$j]['name']."</a> / ";
 }
 echo "<br>";
-
 	?>
 </div>
 
@@ -172,7 +200,7 @@ echo "<br>";
           <form method='post' action='openfile.php'>
           <input type='hidden' name='id' value='".$files[$i]['id']."'>
           <input type='hidden' name='pid' value='".$current_dir."'>
-          <button type='submit' class='btn btn-link'>".$files[$i]['name']." - <a href='filemvset.php?pid=".$current_dir."&move=".$files[$i]['id']."'>MOVE</a></button></form></div> <!--kod do modyfikacji-->
+          <button type='submit' class='btn btn-link'>".$files[$i]['name']."</button><a href='filemvset.php?pid=".$current_dir."&move=".$files[$i]['id']."'><i class='fa fa-copy' ></i></a></form></div>
         <div class='ext-file hidden-xs'>".$files[$i]['ext']."</div>
         <div class='update-file hidden-xs'>".$files[$i]['updated']."</div>
         <div class='size-file'>".responsive_filesize($files[$i]['size'])."</div>
@@ -223,18 +251,29 @@ echo "<br>";
 
 
 <?php
-  echo "<br>Zmienne statystyczne do zabawy :)<br>Plików: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)."<br>-------<br>";
-  echo "Całk.il. plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
-  echo "Całk. dostępna przestrzeń: ".$stat->total_storage()."<br>Porównanie typów plików: ";
+  
+  /*echo "Porównanie typów plików: ";
   $tab = $stat->filesize_comparison();
   echo "<pre>";
   var_dump($tab);
-  echo "</pre>";
+  echo "</pre>";*/
 ?>
 
 
-
+<br><br><br><br><br>
   </div> <!-- end of container  -->
+  
+	<div class="footer footerclose" id="myFooter">
+		<button id="buttonft" type="button" class="btn btn-link" onClick="footer()" ><i class="fa fa-angle-up fa-3x"></i></button>
+		<?php 
+			echo "<br>Zmienne statystyczne do zabawy :)<br>Plików: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)."<br>";
+			/*echo "Całk.il. plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
+			echo "Całk. dostępna przestrzeń: ".$stat->total_storage()."<br>";*/
+		?>
+		<a class="white" href="panelstat.php">Więcej statystyk znajdziesz tutaj <i class="fa fa-code"></i></a>
+	</div>
+  
+  
   <!-- include javascript, jQuery FIRST -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
