@@ -55,18 +55,68 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 
 	   <meta charset="utf-8">
 	   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	   <link rel="stylesheet" href="..\css\filemanager.css">
+	   <link rel="stylesheet" href="..\css\panelstat.css">
 
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 	<!-- Font-Awesome -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-  
-<div class="container"><h2>Strona w budowie</h2></div>  
-  
-  
+		    <nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a href="../index.php"><img class="navbar-brand img" src="../img/clouds_logo2.png" alt="<?php echo $project_title;?>"></a>
+			</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="myNavbar">
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><span class="login">Zalogowano jako: <?php echo $login; ?></span></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Narzędzia
+						<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="uploadfileform.php"><i class="fa fa-file"></i> Dodaj plik</a></li>
+								<li><a href="filemanager.php#newfolder"><i class="fa fa-folder-open"></i> Utwórz nowy katalog</a></li>
+								<li><a href="panelstat.php"><i class="fa fa-star"></i> Statystyki</a></li>
+							</ul>
+					</li>
+					<li><a href="logout.php"><span class="fa fa-power-off" aria-hidden="true"></span><span class="hidden-lg hidden-md hidden-sm">    Wyloguj się </span></a></li>
+				</ul>
+
+			</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+
+<div class="rela-block">
+	<div class="rela-block profile-card">
+		<div class="profile-pic" id="profile_pic"></div>
+		<div class="rela-block profile-name-container">
+			<div class="rela-block user-name" id="user_name"><?php echo $login; ?></div>
+			<div class="rela-block user-desc" id="user_description">Statystki użytkownika</div>
+		</div>
+		<div class="statistics">
+		<?php echo "Tak na marginesie: <br>";
+			echo "Całk.il. plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
+			echo "Całk. dostępna przestrzeń: ".$stat->total_storage()."<br>"
+		?>
+		</div>
+		</div>
+</div>
+<br><br>
 </body>
 </html>
