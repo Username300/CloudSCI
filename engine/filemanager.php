@@ -53,10 +53,8 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
   -->
 	   <title> <?php echo $dir_name." - Pliki użytkownika ".$login." - ".$project_title; ?></title>
 	   <meta charset="utf-8">
-
-	   <meta charset="utf-8">
 	   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	   <link rel="stylesheet" href="..\css\filemanager.css">
+	   <link rel="stylesheet" href="../css/filemanager.css">
 
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -87,7 +85,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 	
 	</script>
 
-	    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	    <nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -109,15 +107,13 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Narzędzia
 						<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="uploadfileform.php">Dodaj plik</a></li>
-								<li><a href="#">Utwórz nowy katalog</a></li>
-								<li><a href="panelstat.php">Statystyki</a></li>
+								<li><a href="uploadfileform.php"><i class="fa fa-file"></i> Dodaj plik</a></li>
+								<li><a href="filemanager.php#newfolder"><i class="fa fa-folder-open"></i> Utwórz nowy katalog</a></li>
+								<li><a href="panelstat.php"><i class="fa fa-star"></i> Statystyki</a></li>
 							</ul>
 					</li>
 					<li><a href="logout.php"><span class="fa fa-power-off" aria-hidden="true"></span><span class="hidden-lg hidden-md hidden-sm">    Wyloguj się </span></a></li>
 				</ul>
-
-				</div>
 
 			</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -162,7 +158,19 @@ echo "<br>";
     ?>
     </h1>
     <br>
-<?php
+	  <?php
+ if(isset($_SESSION['move'])){
+   $move_id=intval($_SESSION['move']);
+   $result = $connect->query("SELECT name,size FROM files$dbprefix WHERE id=$move_id AND owner='$login'");
+   $move_item = $result->fetch_assoc();
+   echo "<div class='fileemanager'><div class='inner1'>";
+   echo "<h4><i class='fa fa-compass fa-2x'></i> Menadżer przenoszenia i kopiowania</h4></div><div class='inner2'>Wybrany plik: ".$move_item['name']."<br>";
+   echo "<div class='center-inner'><a href='filemv.php?id=".$move_id."&pid=".$current_dir."&action=1' class='btn btn-success'>KOPIUJ TUTAJ</a>";
+   echo "<a href='filemv.php?id=".$move_id."&pid=".$current_dir."&action=2' class='btn btn-info'>PRZENIEŚ TUTAJ</a>";
+   echo "<a href='filemv.php?id=".$move_id."&pid=".$current_dir."&action=0' class='btn btn-warning'>ANULUJ</a></div></div>";
+   echo "</div> ";
+ }
+
   if($current_dir!=0){ //sprawdzanie czy mozna przejsc katalog wyzej
     echo "
     <div class='back-div'>
@@ -221,24 +229,16 @@ echo "<br>";
       ";
     }
   }
-  echo "<br>";
- if(isset($_SESSION['move'])){
-   $move_id=intval($_SESSION['move']);
-   $result = $connect->query("SELECT name,size FROM files$dbprefix WHERE id=$move_id AND owner='$login'");
-   $move_item = $result->fetch_assoc();
-   echo "Wybrany plik: ".$move_item['name']."<br>";
-   echo "<a href='filemv.php?id=".$move_id."&pid=".$current_dir."&action=1'>KOPIUJ TUTAJ</a> | ";
-   echo "<a href='filemv.php?id=".$move_id."&pid=".$current_dir."&action=2'>PRZENIEŚ TUTAJ</a> | ";
-   echo "<a href='filemv.php?id=".$move_id."&pid=".$current_dir."&action=0'>ANULUJ</a>";
-   echo "<br><br>";
- }
-  echo "<form method='post' action='makedirectory.php'>
-    Nazwa katalogu: <input type='text' name='name'><br>";
+echo "<br><a name='newfolder'></a>";
+  echo "<div class='folderman'>
+	<div class='folderinner1'><h4>Utwórz nowy katalog lub dodaj plik</h4></div>
+	<div class='folderinner2'>
+	<form method='post' action='makedirectory.php'>
+    <span>Nazwa katalogu: </span><input type='text' name='name'><br>";
     echo "<input type='hidden' name='pid' value='".$current_dir."'>";
     ?>
     <button type='submit' class="btn btn-success"><i class="fa fa-folder-open" aria-hidden="true"></i> Utwórz katalog</button>
   </form>
-  <br>
   <form method="post" action="uploadfileform.php">
     <input type='hidden' name='pid' value=
     <?php
@@ -247,6 +247,8 @@ echo "<br>";
     >
     <button type='submit' class="btn btn-info"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Wyślij plik...</button>
   </form>
+  </div>
+  </div>
 
 
 
@@ -266,7 +268,7 @@ echo "<br>";
 	<div class="footer footerclose" id="myFooter">
 		<button id="buttonft" type="button" class="btn btn-link" onClick="footer()" ><i class="fa fa-angle-up fa-3x"></i></button>
 		<?php 
-			echo "<br>Zmienne statystyczne do zabawy :)<br>Plików: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)."<br>";
+			echo "<br>Zmienne statystyczne do zabawy :)<br>Ilość plików w tym katalogu: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)."<br>";
 			/*echo "Całk.il. plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
 			echo "Całk. dostępna przestrzeń: ".$stat->total_storage()."<br>";*/
 		?>
