@@ -35,7 +35,7 @@ if(mysqli_connect_errno()==0)
   -->
 	   <title>Usuń <?php echo $datatype ?> - <?php echo $project_title;?></title>
 	   <meta charset="utf-8">
-	   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
 	   <link rel="stylesheet" href="..\css\delete_file.css">
 
 	<!-- Bootstrap CSS -->
@@ -46,16 +46,17 @@ if(mysqli_connect_errno()==0)
 
   </head>
   <body>
-      <div class="body">
-	<div class="container">
+	<!--<div class="container">-->
 
 	<br><br>
-		<div class="middle col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+		<div class="middle col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-6 col-sm-offset-2 col-sm-12 col-xs-offset-1 col-xs-10">
 		<br>
+			<div class="row">
 			<img src="../img/question.jpg" alt="img" class="img left">
-
+			<h1>Usunąć plik <?php echo $filename; ?> ?</h1><br>
+			</div>
 			<div class="left">
-				  <h1>Usunąć plik <?php echo $filename; ?> ?</h1><br>
+				  
 
 				  <h3>Uważaj! Usuwanie jest nieodwracalne!</h3><br>
 					<form action="deletefile.php" method="post" class="left">
