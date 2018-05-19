@@ -3,7 +3,7 @@ html,body{
 	height: 100%;
 }
 body{
-	background-color: #e24f4f !important;
+	background-color: #F6F6F6 !important;
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -18,6 +18,9 @@ body{
 }
 .middle{
 	margin: 0 auto;
+}
+.middle h1{
+	word-break: break-all;
 }
 .img{
 	width: 120px;
@@ -34,9 +37,9 @@ body{
 .con h3{
 	color: #d33d3b;
 }
-h1.test {
+/*h1.test {
     word-wrap: break-word;
-}
+}*/
 .cancel{
 	margin-left:10px;
 }
@@ -53,10 +56,10 @@ h1.test {
 
 @media (max-width: 576px){
 	/* xs */
-	.img{
+	/*.img{
 		width: 240px;
 		height: auto;
 		margin: 0 auto;
-	}
+	}*/
 	
 }
