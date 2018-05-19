@@ -2,18 +2,30 @@ html,body{
 	width: 100%;
 	height: 100%;
 }
+body{
+	background-image: url("../img/main2.jpg");
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	background-attachment: fixed;
+}
 .register-main{
 	width: 100%;
 	height: 100%;
-	background-image: url("../img/main2.jpg");
+	/*background-image: url("../img/main2.jpg");
 	background-size: 100% 100%;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat;*/
 }
 .register-form{
 	
 }
 .register-form h1{
 	text-align: center;
+}
+.register-form input{
+	width: 93%;
 }
 #reg_h1{
 	text-align: center;
