@@ -24,6 +24,9 @@ body{
 	margin-top: 60px;
 	border-radius: 30px;
 }
+.register-content input{
+	width: 93%;
+}
 .goback-btn{
 	display: block;
 	margin: 0 auto;
@@ -60,13 +63,13 @@ body{
 	.register-content{
 		position: relative;
 		left: 25%;
-		padding-left: 60px !important;
+		/*padding-left: 60px !important;*/
 	}
 	.register-form input{
-	margin-left: 60px ;
+	margin-left: 30px ;
 	}
 	.register-form span{
-	padding-left: 75px;
+	padding-left: 35px;
 	}
 }
 
