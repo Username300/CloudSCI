@@ -1,8 +1,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> - automatyczne skalowanie UI na telefonach
 
-@media (max-width:600px){ - modyfikuje cssa w zale�no�ci od szeroko�ci ekranu
+@media (max-width:600px){ - modyfikuje cssa w zależności od szerokości ekranu
 	body{
 		background:red;
 	}
 }
 
+@Olek z obu rzeczy cały czas korzystam, media queries są chyba w praktycznie każdym pliku css w tym projekcie
