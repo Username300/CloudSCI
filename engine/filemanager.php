@@ -53,7 +53,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
   -->
 	   <title> <?php echo $dir_name." - Pliki użytkownika ".$login." - ".$project_title; ?></title>
 	   <meta charset="utf-8">
-	   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
 	   <link rel="stylesheet" href="../css/filemanager.css">
 
 	<!-- Bootstrap CSS -->
@@ -135,12 +135,12 @@ $path[$i]['id'] = 0;
 $path[$i]['name'] = "Katalog główny";
 //wyswietlanie sciezki
 ?>
-
+	  
 <div class="path">
 	<?php
 	echo "<br>";
 for($j = count($path)-1;$j>=0;$j--){
-  echo "<a href='filemanager.php?pid=".$path[$j]['id']."'>".$path[$j]['name']."</a> / ";
+  echo "<a href='filemanager.php?pid=".$path[$j]['id']."'><div class='chevron'><span>".$path[$j]['name']."</span> </div></a>";
 }
 echo "<br>";
 	?>
@@ -234,7 +234,7 @@ echo "<br><a name='newfolder'></a>";
 	<div class='folderinner1'><h4>Utwórz nowy katalog lub dodaj plik</h4></div>
 	<div class='folderinner2'>
 	<form method='post' action='makedirectory.php'>
-    <span>Nazwa katalogu: </span><input type='text' name='name'><br>";
+    <span>Nazwa katalogu: </span><input type='text' class='form-control catalog-input' name='name'><br>";
     echo "<input type='hidden' name='pid' value='".$current_dir."'>";
     ?>
     <button type='submit' class="btn btn-success"><i class="fa fa-folder-open" aria-hidden="true"></i> Utwórz katalog</button>
