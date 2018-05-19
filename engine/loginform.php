@@ -16,7 +16,7 @@
 	
 	   <title>Zaloguj się - <?php echo $project_title;?> </title>
 	   <meta charset="utf-8">
-	   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
 	   <link rel="stylesheet" href="..\css\login.css">
 	   
 	<!-- Bootstrap CSS -->
@@ -34,8 +34,8 @@
 			<form action="login.php" method="post" class="register-form">
 			  <img src="..\img\clouds_logo2.png" alt="CloudS" class="img-logo">
 			  <h1>Zaloguj się</h1>
-			  <span>Podaj login: </span><br><input type="text" name="login" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><br><br>
-			  <span>Podaj hasło: </span><br><input type="password" name="password" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><br>
+			  <span>Podaj login: </span><br><input type="text" name="login" class=" form-control col-lg-6 col-md-6 col-sm-12 col-xs-12"><br><br>
+			  <span>Podaj hasło: </span><br><input type="password" name="password" class="form-control col-lg-6 col-md-6 col-sm-12 col-xs-12"><br>
 			  <br>
 			  <div style="text-align: center;"><button type='submit' class="btn btn-success">Zaloguj</button></div>
 			  <br>
