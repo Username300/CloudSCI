@@ -202,6 +202,19 @@
 /*.path{
 	font-weight: bold;
 }*/
+.table-dark{
+	/*background-color: #e8e9ea;*/
+	background-color: #8c959e;
+	color:white;
+}
+.tr-file{
+	background-color: #eff0f2;
+	color: black;
+}
+.tr-dir{
+	background-color: #e3e9ef;
+	color: black;
+}
 .inner1{
 	text-align:center;
 	padding: 5px 15px;
@@ -236,7 +249,8 @@
 	display: block;
 	/*background-color: #afbfd8;*/
 	clear: left !important;
-	margin-bottom:40px;
+	/*margin-bottom:40px;*/
+	margin: 0 auto;
 	border-radius: 5px;
 	background-color: #d2e1ef;
 }
