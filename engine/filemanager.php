@@ -180,55 +180,57 @@ echo "<br>";
     </div>
     ";
   }
+  echo "<div class='table-responsive'> <table class='table table-bordered table-condensed table-dark'><thead><tr><th>Nazwa pliku</th><th>Typ</th><th>Data wysłania</th><th>Rozmiar</th><th>Operacje</th></tr></thead><tbody>";
   for($i=0;$i<$num_of_files;$i++){ //divy z pojedynczymi plikami
     if($files[$i]['type']==="DIR"){
       echo "
-      <div class='line-dir'>
-        <div class='file-dir'>
+      <tr class='tr-dir'>
+        <td>
           <form method='get' action='filemanager.php'>
           <input type='hidden' name='pid' value='".$files[$i]['id']."'>
-          <button type='submit' class='btn btn-link'><i class='fa fa-folder-open' aria-hidden='true'></i> ".$files[$i]['name']."</button></form></div>
-        <div class='ext-dir hidden-xs'>katalog</div>
-        <div class='update-dir hidden-xs'>".$files[$i]['updated']."</div>
-        <div class='size-dir'>".responsive_filesize($stat->local_sizeOfDir($files[$i]['id']))."</div>
-        <div class='delete-dir'>
+          <button type='submit' class='btn btn-link'><i class='fa fa-folder-open' aria-hidden='true'></i> ".$files[$i]['name']."</button></form></td>
+        <td>katalog</td>
+        <td>".$files[$i]['updated']."</td>
+        <td>".responsive_filesize($stat->local_sizeOfDir($files[$i]['id']))."</td>
+        <td>
           <form method='post' action='deletefileform.php'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
             <input type='hidden' name='pid' value='".$current_dir."'>
             <button type='submit' class='btn btn-link btn-delete-dir'><i class='fa fa-times' aria-hidden='true'></i> <span class='hidden-xs-down hidden-xs'>Usuń</span></button>
           </form>
-        </div>
-      </div>
+        </td
+      </tr>
       ";
     }
     else if($files[$i]['type']==="FILE"){
       echo "
-      <div class='line-file'>
-        <div class='file-file'>
+      <tr  class='tr-file'>
+        <td>
           <form method='post' action='openfile.php'>
           <input type='hidden' name='id' value='".$files[$i]['id']."'>
           <input type='hidden' name='pid' value='".$current_dir."'>
-          <button type='submit' class='btn btn-link'>".$files[$i]['name']."</button><a href='filemvset.php?pid=".$current_dir."&move=".$files[$i]['id']."'><i class='fa fa-copy' ></i></a></form></div>
-        <div class='ext-file hidden-xs'>".$files[$i]['ext']."</div>
-        <div class='update-file hidden-xs'>".$files[$i]['updated']."</div>
-        <div class='size-file'>".responsive_filesize($files[$i]['size'])."</div>
-        <div class='delete-dir-file'>
-          <form method='post' action='deletefileform.php'>
+          <button type='submit' class='btn btn-link'>".$files[$i]['name']."</button><a href='filemvset.php?pid=".$current_dir."&move=".$files[$i]['id']."'><i class='fa fa-copy' ></i></a></form></td>
+        <td>".$files[$i]['ext']."</td>
+        <td>".$files[$i]['updated']."</td>
+        <td>".responsive_filesize($files[$i]['size'])."</td>
+        <td style='width:163px;'>
+          <form method='post' action='deletefileform.php' style='float:left;'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
             <input type='hidden' name='pid' value='".$current_dir."'>
             <button class='btn btn-link delete' type='submit'> <i class='fa fa-times' aria-hidden='true'></i><span class='hidden-xs hidden-sm hidden-xs-down'> Usuń</span></button>
           </form>
-        </div>
-        <div class='download-file'>
-          <form method='post' action='downloadfile.php'>
+        
+          <form method='post' action='downloadfile.php' style='float:left;'>
             <input type='hidden' name='id' value='".$files[$i]['id']."'>
             <button class='btn btn-link' type='submit'><i class='fa fa-cloud-download' aria-hidden='true'></i><span class='hidden-xs hidden-sm hidden-xs-down'> Pobierz</span></button>
           </form>
-        </div>
-      </div>
+        </td>
+      </tr>
       ";
     }
   }
+  
+  echo "</tbody></table></div>";
 echo "<br><a name='newfolder'></a>";
   echo "<div class='folderman'>
 	<div class='folderinner1'><h4>Utwórz nowy katalog lub dodaj plik</h4></div>
@@ -268,7 +270,7 @@ echo "<br><a name='newfolder'></a>";
 	<div class="footer footerclose" id="myFooter">
 		<button id="buttonft" type="button" class="btn btn-link" onClick="footer()" ><i class="fa fa-angle-up fa-3x"></i></button>
 		<?php 
-			echo "<br>Zmienne statystyczne do zabawy :)<br>Ilość plików w tym katalogu: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)."<br>";
+			echo "<br>Ilość plików w tym katalogu: ".$stat->local_filesInDir($current_dir)."<br>Rozmiar katalogu: ".$stat->local_sizeOfDir($current_dir)."<br>";
 			/*echo "Całk.il. plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
 			echo "Całk. dostępna przestrzeń: ".$stat->total_storage()."<br>";*/
 		?>
