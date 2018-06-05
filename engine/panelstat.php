@@ -66,7 +66,7 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-		    <nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -110,13 +110,15 @@ if(mysqli_connect_errno()==0) //pobieranie danych z bazy
 			<div class="rela-block user-desc" id="user_description">Statystki użytkownika</div>
 		</div>
 		<div class="statistics">
-		<?php echo "Tak na marginesie: <br>";
-			echo "Całk.il. plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
-			echo "Całk. dostępna przestrzeń: ".$stat->total_storage()."<br>"
+		<?php //echo "Tak na marginesie: <br>";
+			echo "Całkowita ilość plików: ".$stat->num_of_files()."<br>Zajęte miejsce na dysku: ".$stat->size_profile()."<br>";
+			echo "Całkowita dostępna przestrzeń: ".$stat->total_storage()."<br><br>"
 		?>
 		</div>
 		</div>
 </div>
 <br><br>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
